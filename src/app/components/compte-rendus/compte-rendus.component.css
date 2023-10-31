@@ -1,0 +1,143 @@
+body{
+	font:1.2em normal Arial,sans-serif;
+	color:#34495E;
+
+  }
+
+  h1{
+	text-align:center;
+	text-transform:uppercase;
+	letter-spacing:-2px;
+	font-size:2.5em;
+	margin:20px 0;
+  }
+
+  .container{
+	width:90%;
+	margin:auto;
+  }
+
+  .six h1 {
+	text-align: center;
+	color:#222; font-size:30px; font-weight:400;
+	text-transform: uppercase;
+	word-spacing: 1px; letter-spacing:2px; color:#c50000;
+  }
+  .six h1 span {
+	line-height:2em; padding-bottom:15px;
+	text-transform: none;
+	font-size:.7em;
+	font-weight: normal;
+	font-style: italic; font-family: "Playfair Display","Bookman",serif;
+	color:#999; letter-spacing:-0.005em; word-spacing:1px;
+	letter-spacing:none;
+  }
+  .six h1:after, .six h1:before {
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	width: 45px;
+	height: 4px;
+	content: "";
+	right: 45px;
+	margin:auto;
+	background-color: #ccc;
+  }
+  .six h1:before {
+  background-color:#d78b8b;
+	left:45px; width:90px;
+  }
+
+
+.blue {
+	font-family: Arial, sans-serif;
+	border-collapse: collapse;
+	width: 100%;
+  }
+
+  .blue th, .blue td {
+	border: 1px solid black;
+	padding: 8px;
+  }
+
+  .blue th {
+	background-color: #000;
+	color: white;
+  }
+
+  .blue tr:nth-child(even) {
+	background-color: #f2f2f2;
+  }
+
+  .blue tr:hover {
+	background-color: #ddd;
+  }
+
+  .blue td[colspan] {
+	text-align: center;
+  }
+
+  .responstable {
+	width: 80%;
+	margin: 0 auto;
+	overflow: auto;
+	margin-top: 10px;
+	margin-bottom: 50px;
+  }
+
+  .responstable table {
+	width: 100%;
+	font-size: 16px;
+	border-collapse: collapse;
+  }
+
+  .responstable td, .responstable th {
+	border: 1px solid #ccc;
+	padding: 5px 10px;
+	white-space: nowrap;
+  }
+  /*.blue tr:first-child {
+	background-color: #000;
+	color: white;
+  }*/
+  #jour{
+	background-color: #000;
+	color: white;
+  }
+/* Truncate cell content */
+.truncate-cell {
+	/*max-width: 150px; /* Adjust the value as needed */
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	position: relative;
+	cursor: pointer;
+  }
+
+  /* Modal styles */
+
+
+  .truncate-cell:hover .modal {
+	display: block;
+  }
+  td {
+	/*max-width: 100px; /* Adjust the value as needed */
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	cursor: pointer;
+  }
+
+  td:hover {
+	white-space: normal;
+	overflow: visible;
+  }
+  .six {
+	position: relative;
+	background: #f8f8f8;
+	width: 90%;
+	max-width: 500px;
+	padding: 2em;
+	margin: 1.5em auto;
+	border: 3px solid rgba(0, 0, 0, 0.08);
+  }

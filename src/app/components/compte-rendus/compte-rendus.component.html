@@ -1,1 +1,80 @@
-<p>compte-rendus works!</p>
+
+
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- ... autres balises head ... -->
+  </head>
+
+ <div class="six" >
+	<h1>Compte  Rendu exploitation <br/> {{tasks.hits.hits[0]._source.timestamp | date :'dd/MM/yyyy'}}
+	  <span>{{id}}</span>
+	</h1>
+  </div>
+
+<div style=" margin-left: auto; margin-right: auto; display: flex;">
+	<app-filter (filterRadioButtonSelectedChanged)="onfilterRadioChanged($event)"></app-filter>
+	<app-search (searchTextChanged)="onSearchTextEntered($event)"></app-search>
+
+</div>
+
+
+
+ <table class="blue" style="width: 90%; overflow-x:auto; margin-right: auto; margin-left: auto; overflow-y: auto; margin-top: 10px; margin-bottom: 50px;">
+	<thead>
+
+	  <tr>
+		<th scope="col">level</th>
+		<th scope="col">TransactionCode</th>
+		<th scope="col">desc</th>
+		<th scope="col">{{id}}</th>
+		<th scope="col">Seuil</th>
+		<th>Details</th>
+
+	  </tr>
+	</thead>
+	<tbody>
+
+		<ng-container *ngFor="let task of tasks.hits.hits ">
+			<tr *ngIf="( (compteRenduRadioButton === 'All') || task._source.level.toLowerCase().includes(compteRenduRadioButton.toLowerCase()))">
+			<td scope="row" [ngClass]="{
+				'text-success ': task._source.level==='OK',
+				'text-danger': task._source.level==='Critical',
+			'text-warning': task._source.level==='warning'}">
+			{{task._source.level}}</td>
+			<td *ngIf="task?.property !== null">{{task._source.tcode}}</td>
+			<td >{{task._source.desc}}</td>
+			<td>{{task._source.value}}</td>
+			<td>{{task._source.threshold}}</td>
+			<td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">
+				details {{task._source.tcode}}
+			  </button>
+
+
+			  <!-- Modal -->
+		</td>
+
+		  </tr>
+
+		</ng-container>
+	</tbody>
+  </table>
+	  <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+				<div class="modal-dialog" role="document">
+				  <div class="modal-content">
+					<div class="modal-header">
+					  <h5 class="modal-title" id="exampleModalLongTitle">Détails </h5>
+					  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					  </button>
+					</div>
+					<div class="modal-body">
+					  2023-05-07  22:07 - ESH100IX_EP1100_B0B091876BD5FA60 - SAPSYS      <br>2023-05-07  22:06 - ESH100IX_EP1100_BACEEA74A9B221F8 - SAPSYS      <br>2023-05-07  09:41 - ZSAP_WORKFLOW_RULE               - SAPSYS      <br>2023-05-08  01:10 - ZSAP_WORKFLOW_RULE               - SAPSYS      <br>2023-05-07  22:04 - ZSAP_WORKFLOW_RULE               - SAPSYS      <br>2023-05-07  15:53 - ZSAP_WORKFLOW_RULE               - SAPSYS      <br>2023-05-07  12:47 - ZSAP_WORKFLOW_RULE               - SAPSYS      <br>2023-05-08  07:22 - ZSAP_WORKFLOW_RULE               - SAPSYS      <br>2023-05-07  18:59 - ZSAP_WORKFLOW_RULE               - SAPSYS      <br>2023-05-08  04:16 - ZSAP_WORKFLOW_RULE               - SAPSYS
+
+					</div>
+					<div class="modal-footer">
+					  <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+
+					</div>
+				  </div>
+				</div>
+			  </div>
