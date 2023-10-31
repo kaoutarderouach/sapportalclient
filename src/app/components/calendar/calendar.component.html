@@ -1,0 +1,63 @@
+<!--<div class="col-md-4">
+	<label>Filter By Date</label>
+	<input max="{{ maxDate }}" type="date" style="width: 100%;" class="mb-3" [(ngModel)]="enteredDateValue"  (input)="onSearchDateChanged()"   name="startDate" ><br>
+
+
+</div>-->
+
+
+
+<div class="container">
+	<h3>Séléctionnez la date de début et la date de fin</h3>
+	<div class="row">
+	  <div class="col-md-6">
+		<label>Date de début:</label>
+		<input max="{{ maxDate }}" type="date" class="form-control" [(ngModel)]="enteredDateValue"  (input)="onSearchDateChanged()"   name="startDate">
+	  </div>
+	  <div class="col-md-6">
+		<label>Date de fin:</label>
+		<input max="{{ maxDate}}" [min]="getMinEndDate()" type="date" class="form-control" [(ngModel)]="enteredEndDateValue"  (input)="onSearchEndDateChanged()"   name="endDate">
+	  </div>
+	</div>
+  </div>
+<style>
+  .container {
+margin-top: 20px;
+}
+
+.title {
+font-size: 24px;
+font-weight: bold;
+margin-bottom: 20px;
+color: #333;
+}
+
+.label {
+font-weight: bold;
+color: #666;
+}
+
+.form-control {
+width: 100%;
+border: 1px solid #ccc;
+border-radius: 4px;
+padding: 8px;
+}
+
+.row {
+margin-left: -15px;
+margin-right: -15px;
+}
+
+.col-md-6 {
+padding-left: 15px;
+padding-right: 15px;
+margin-bottom: 15px;
+}
+
+input[type="date"] {
+background-color: #f8f8f8;
+color: #333;
+}
+
+</style>

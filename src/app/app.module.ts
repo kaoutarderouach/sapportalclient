@@ -25,6 +25,8 @@ import { SearchComponent } from './components/search/search.component';
 import { StatutByMonthComponent } from './components/statut-by-month/statut-by-month.component';
 import { TopWidgetsComponent } from './components/top-widgets/top-widgets.component';
 import { UserListComponent } from './components/user-list/user-list.component';
+import { CalendarComponent } from './components/calendar/calendar.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -50,11 +52,13 @@ import { UserListComponent } from './components/user-list/user-list.component';
     SearchComponent,
     StatutByMonthComponent,
     TopWidgetsComponent,
-    UserListComponent
+    UserListComponent,
+    CalendarComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
