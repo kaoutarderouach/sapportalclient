@@ -1,1 +1,56 @@
-<p>filter-type works!</p>
+<div class="col-md-8">
+	<fieldset id="niveau">
+	  <label><strong>Type:</strong></label>
+	  <div class="fieldgroup">
+		<input type="radio" name="type" value="sys" [(ngModel)]="selectedTypeButtonValue" (change)="onTypeButtonSelectedChanged()" id="radio-sys" />
+		<label for="radio-sys">Comptes rendus</label>
+	  </div>
+	  <div class="fieldgroup">
+		<input type="radio" name="type" value="jobs" [(ngModel)]="selectedTypeButtonValue" (change)="onTypeButtonSelectedChanged()" id="radio-jobs" />
+		<label for="radio-jobs">Jobs</label>
+	  </div>
+	  <div class="fieldgroup">
+		<input type="radio" name="type" value="backup" [(ngModel)]="selectedTypeButtonValue" (change)="onTypeButtonSelectedChanged()" id="radio-backup" />
+		<label for="radio-backup">Sauvegardes</label>
+	  </div>
+	  <div class="fieldgroup">
+		<input type="radio" name="type" value="log" [(ngModel)]="selectedTypeButtonValue" (change)="onTypeButtonSelectedChanged()" id="radio-log" />
+		<label for="radio-log">Archivages</label>
+	  </div>
+	</fieldset>
+  </div>
+
+  <style>
+	.fieldgroup {
+	  margin-left: 1em;
+	}
+
+	.fieldgroup input[type="radio"] {
+	  display: none;
+	}
+
+	.fieldgroup label {
+	  display: inline-block;
+	  cursor: pointer;
+	  padding: 0.5em 1em;
+	  border-radius: 4px;
+	  transition: background-color 0.3s ease;
+	}
+
+	.fieldgroup input[type="radio"]:checked + label {
+	  background-color: rgba(255, 111, 0, 0.829);
+	  color: white;
+	}
+
+	@media only screen and (max-width: 576px) {
+	  .fieldgroup {
+		margin-bottom: 1em;
+	  }
+	}
+	.type-label {
+  font-weight: bold;
+  color: #333;
+  margin-right: 10px;
+}
+
+  </style>

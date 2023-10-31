@@ -1,1 +1,77 @@
-<p>filter works!</p>
+<div class="container-fluid" style="margin-right: 10px; margin-left: 100px;">
+	<fieldset id="niveau">
+	  <div class="d-flex align-items-center">
+		<span ><strong>Choisir un niveau:</strong> </span>
+		<div class="fieldgroup">
+		  <input type="radio" name="niveau" value="All" [(ngModel)]="selectedRadioButtonValue" (change)="onRadioButtonSelectedChanged()" id="radio-all" />
+		  <label for="radio-all">Tous</label>
+		</div>
+		<div class="fieldgroup">
+		  <input type="radio" name="niveau" value="Critical" [(ngModel)]="selectedRadioButtonValue" (change)="onRadioButtonSelectedChanged()" id="radio-critical" />
+		  <label for="radio-critical">Critical</label>
+		</div>
+		<div class="fieldgroup">
+		  <input type="radio" name="niveau" value="Warning" [(ngModel)]="selectedRadioButtonValue" (change)="onRadioButtonSelectedChanged()" id="radio-warning" />
+		  <label for="radio-warning">Warning</label>
+		</div>
+		<div class="fieldgroup">
+		  <input type="radio" name="niveau" value="OK" [(ngModel)]="selectedRadioButtonValue" (change)="onRadioButtonSelectedChanged()" id="radio-ok" />
+		  <label for="radio-ok">OK</label>
+		</div>
+	  </div>
+	</fieldset>
+  </div>
+
+  <style>
+	.fieldgroup {
+	  margin-left: 2em;
+	}
+
+	@media only screen and (max-width: 576px) {
+	  .container-fluid {
+		margin-right: 0;
+		margin-left: 0;
+		padding-right: 10px;
+		padding-left: 10px;
+	  }
+
+	  .d-flex {
+		flex-wrap: wrap;
+	  }
+
+	  .fieldgroup {
+		margin-bottom: 1em;
+		margin-left: 0;
+		width: 100%;
+	  }
+
+	  label {
+		margin-left: 0.5em;
+	  }
+	}
+
+	.label.success {
+	  background-color: rgba(255, 111, 0, 0.829);
+	  color: white;
+	  padding: 0.5em 1em;
+	  border-radius: 4px;
+	  font-weight: bold;
+	}
+
+	.fieldgroup input[type="radio"] {
+	  display: none;
+	}
+
+	.fieldgroup label {
+	  display: inline-block;
+	  cursor: pointer;
+	  padding: 0.5em 1em;
+	  border-radius: 4px;
+	  transition: background-color 0.3s ease;
+	}
+
+	.fieldgroup input[type="radio"]:checked + label {
+	  background-color: rgba(255, 111, 0, 0.829);
+	  color: white;
+	}
+  </style>
