@@ -1,1 +1,27 @@
-<p>history-filter works!</p>
+
+<fieldset id="niveau">
+	<legend>Filter by</legend>
+	<div class="fieldgroup">
+	<input type="radio" name="niveau" value="All" [(ngModel)]="selectedRadioButtonValue"
+	(change)="onRadioButtonSelectedChanged()"/><label for="All" >All
+	</label>
+	</div>
+	<div class="fieldgroup">
+	<input type="radio" name="niveau" value="Critical" [(ngModel)]="selectedRadioButtonValue"
+	(change)="onRadioButtonSelectedChanged()"/><label for= "Critical">Critical</label>
+	</div>
+	<div class="fieldgroup">
+		<input type="radio" name="niveau" value="Warning" [(ngModel)]="selectedRadioButtonValue"
+		(change)="onRadioButtonSelectedChanged()"/><label for= "Warning">Warning</label>
+		</div>
+		<div class="fieldgroup">
+			<input type="radio" name="niveau" value="OK" [(ngModel)]="selectedRadioButtonValue"
+			(change)="onRadioButtonSelectedChanged()"/><label for= "OK">OK</label>
+			</div>
+	</fieldset>
+
+<style>	.fieldgroup{
+	float: left;
+	width: auto;
+	margin-left: 3em;
+ }</style>

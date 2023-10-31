@@ -1,0 +1,181 @@
+.jobs {
+	font-family: Arial, sans-serif;
+	border-collapse: collapse;
+	width: 100%;
+  }
+
+  .jobs th, .jobs td {
+	border: 1px solid black;
+	padding: 8px;
+  }
+
+  .jobs th {
+	background-color: #000;
+	color: white;
+  }
+
+  .jobs tr:nth-child(even) {
+	background-color: #f2f2f2;
+  }
+
+  .jobs tr:hover {
+	background-color: #ddd;
+  }
+
+  .jobs td[colspan] {
+	text-align: center;
+  }
+
+  .responstable {
+	width: 80%;
+	margin: 0 auto;
+	overflow: auto;
+	margin-top: 10px;
+	margin-bottom: 50px;
+  }
+
+  .responstable table {
+	width: 100%;
+	font-size: 16px;
+	border-collapse: collapse;
+  }
+
+  .responstable td, .responstable th {
+	border: 1px solid #ccc;
+	padding: 5px 10px;
+	white-space: nowrap;
+  }
+  .jobs tr:first-child {
+	background-color: #000;
+	color: white;
+  }
+  #jour{
+	background-color: #000;
+	color: white;
+  }
+/* Truncate cell content */
+/*.truncate-cell {
+	max-width: 150px; /* Adjust the value as needed */
+	/*overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	position: relative;
+	cursor: pointer;
+  }*/
+
+  /* Modal styles */
+  .modal {
+	display: none;
+	position: absolute;
+	top: 0;
+	left: 100%;
+	z-index: 9999;
+	padding: 10px;
+	background-color: white;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+
+  .truncate-cell:hover .modal {
+	display: block;
+  }
+  td {
+	/*max-width: 100px; /* Adjust the value as needed */
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	cursor: pointer;
+  }
+
+  td:hover {
+	white-space: normal;
+	overflow: visible;
+  }
+  .blue {
+	font-family: Arial, sans-serif;
+	border-collapse: collapse;
+	width: 100%;
+  }
+
+  .blue th, .blue td {
+	border: 1px solid black;
+	padding: 8px;
+  }
+
+  .blue th {
+	background-color: #000;
+	color: white;
+  }
+
+  .blue tr:nth-child(even) {
+	background-color: #f2f2f2;
+  }
+
+  .blue tr:hover {
+	background-color: #ddd;
+  }
+
+  .blue td[colspan] {
+	text-align: center;
+  }
+
+  .responstable {
+	width: 80%;
+	margin: 0 auto;
+	overflow: auto;
+	margin-top: 10px;
+	margin-bottom: 50px;
+  }
+
+  .responstable table {
+	width: 100%;
+	font-size: 16px;
+	border-collapse: collapse;
+  }
+
+  .responstable td, .responstable th {
+	border: 1px solid #ccc;
+	padding: 5px 10px;
+	white-space: nowrap;
+  }
+
+  #jour{
+	background-color: #000;
+	color: white;
+  }
+/* Truncate cell content */
+/*.truncate-cell {
+	max-width: 150px; /* Adjust the value as needed */
+	/*overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	position: relative;
+	cursor: pointer;
+  }*/
+
+  /* Modal styles */
+  .modal {
+	display: none;
+	position: absolute;
+	top: 0;
+	left: 100%;
+	z-index: 9999;
+	padding: 10px;
+	background-color: white;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+/*
+  .truncate-cell:hover .modal {
+	display: block;
+  }*/
+  td {
+	/*max-width: 100px; /* Adjust the value as needed */
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	cursor: pointer;
+  }
+
+  td:hover {
+	white-space: normal;
+	overflow: visible;
+  }

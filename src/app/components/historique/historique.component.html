@@ -1,1 +1,220 @@
-<p>historique works!</p>
+<div class="row" style="margin-top: 30px;">
+	<div class="col-md-8">	<span><app-filter-type (filterTypeButtonSelectedChanged)="onfilterTypeChanged($event)"> </app-filter-type></span></div>
+
+	<div class="col-md-4"><app-calendar (searchDateChanged)="onSearchDateEntered($event)" (searchEndDateChanged)="onSearchEndDateEntered($event)"></app-calendar></div>
+
+  </div>
+
+<ng-container *ngIf="typeRadioButton==='sys'">
+
+
+	<app-filter (filterRadioButtonSelectedChanged)="onfilterRadioChanged($event)"></app-filter>
+	<div style=" width: 90%; overflow-x:auto; margin-right: auto; margin-left: auto; overflow-y: auto;" class="responstable">
+<table class="blue" >
+	<thead>
+
+	  <tr>
+		<th scope="col">level</th>
+		<th scope="col">TransactionCode</th>
+		<th scope="col">desc</th>
+		<th scope="col">EP1</th>
+		<th scope="col">Seuil</th>
+		<th scope="col">Date</th>
+	  </tr>
+	</thead>
+	<tbody>
+
+		<ng-container *ngFor="let task of tasks.hits.hits ">
+	<!--<tr  *ngIf="(task._source.level.toLowerCase().includes(searchText.toLowerCase()) || task._source.desc.toLowerCase().includes(searchText.toLowerCase())) && (compteRenduRadioButton === 'All'|| (task._source.level.toLowerCase().includes(compteRenduRadioButton.toLowerCase()) && task._source.desc.toLowerCase().includes(searchDate.toLowerCase()))) ">!-->
+		<tr *ngIf="((searchDate | date:'dd-MM-yyyy' )===(today | date:'dd-MM-yyyy') &&( (compteRenduRadioButton === 'All' && task._source.level!=='') || task._source.level.toLowerCase().includes(compteRenduRadioButton.toLowerCase())&&((searchDate)<(task._source.timestamp)&& (searchEndDate)>=(task._source.timestamp)) ))||((searchDate)<(task._source.timestamp)&& (compteRenduRadioButton === 'All' )) || ((((task._source.timestamp)>(searchDate)) && ((searchEndDate)>=(task._source.timestamp)) )&&(task._source.level.toLowerCase().includes(compteRenduRadioButton.toLowerCase())))">
+
+		<td scope="row" [ngClass]="{
+				'text-success': task._source.level==='OK',
+				'text-danger': task._source.level==='Critical',
+			'text-warning': task._source.level==='Warning'}">{{task._source.level}}</td>
+			<td >{{task._source.tcode}}</td>
+			<td >{{task._source.desc}}</td>
+			<td>{{task._source.value}}</td>
+			<td>{{task._source.threshold}}</td>
+			<td >{{task._source.timestamp | date:'dd-MM-yyyy'}} </td>
+		  </tr>
+
+		</ng-container>
+
+
+
+
+
+
+	</tbody>
+  </table>
+  </div>
+</ng-container>
+
+
+<ng-container *ngIf="typeRadioButton==='backup'">
+	<div style=" width: 90%; overflow-x:auto; margin-right: auto; margin-left: auto; margin-top: 5px; overflow-y: auto;" class="responstable">
+	<table class="blue" >
+		<thead>
+		  <tr>
+			<th>SID </th>
+			<th>SYS_START_TIME </th>
+			<th>SYS_END_TIME</th>
+			<th>ENTRY_TYPE_NAME</th>
+			<th>STATE_NAME</th>
+			<th>Type</th>
+			<th >timestamp </th>
+
+		  </tr>
+		</thead>
+		<tbody>
+			<ng-container *ngFor="let backup of backups.hits.hits ">
+			<tr *ngIf="((searchDate | date:'dd-MM-yyyy' )===(today | date:'dd-MM-yyyy')) || ((searchDate)<=(backup._source.timestamp) && (searchEndDate)>=(backup._source.timestamp)) ">
+
+			<td>{{backup._source.sid}}</td>
+			<td>{{backup._source.sys_start_time }}</td>
+			<td>{{backup._source.sys_end_time }}</td>
+			<td>{{backup._source.entry_type_name}}</td>
+			<td  [ngClass]="{
+				'text-success': backup._source.state_name==='successful',
+				'text-danger': backup._source.state_name==='failed',
+				'text-warning': backup._source.state_name==='running'}">{{backup._source.state_name}}</td>
+				<td>{{backup._source.type}}</td>
+				<td >{{backup._source.timestamp | date:'dd-MM-yyyy'}} </td>
+		  </tr>
+
+		</ng-container>
+
+		</tbody>
+	  </table>
+	  </div>
+	  <button  class="back-to-top" (click)="scrollToTop()">Back to Top</button>
+</ng-container>
+
+<ng-container *ngIf="typeRadioButton==='log'">
+	<div style=" width: 90%; overflow-x:auto; margin-right: auto; margin-left: auto; overflow-y: auto; margin-top: 10px;">
+	<table class="blue" >
+		<thead>
+			<tr>
+			<th>SID </th>
+			<th>SYS_START_TIME </th>
+			<th>SYS_END_TIME</th>
+			<th>ENTRY_TYPE_NAME</th>
+			<th>STATE_NAME</th>
+			<th>Type</th>
+			<th >timestamp </th>
+
+		  </tr>
+		</thead>
+		<tbody>
+			<ng-container *ngFor="let log of logs.hits.hits ">
+				<tr *ngIf="((searchDate | date:'dd-MM-yyyy' )===(today | date:'dd-MM-yyyy')) || ((searchDate)<=(log._source.timestamp) && (searchEndDate)>=(log._source.timestamp))">
+			<td>{{log._source.sid}}</td>
+			<td>{{log._source.sys_start_time }}</td>
+			<td>{{log._source.sys_end_time }}</td>
+			<td>{{log._source.entry_type_name}}</td>
+			<td  [ngClass]="{
+				'text-success': log._source.state_name==='successful',
+				'text-danger': log._source.state_name==='failed',
+				'text-warning': log._source.state_name==='running'}">{{log._source.state_name}}</td>
+				<td>{{log._source.type}}</td>
+				<td >{{log._source.timestamp | date:'dd-MM-yyyy'}} </td>
+		  </tr>
+
+		</ng-container>
+
+		</tbody>
+	  </table>
+	  </div>
+	  <button  class="back-to-top" (click)="scrollToTop()">Back to Top</button>
+</ng-container>
+
+
+
+
+
+<ng-container *ngIf="typeRadioButton==='All'">
+	<div style="margin-left: 400px; margin-right: auto; margin-bottom: 50px;">
+		<h2 style="margin-left: 150px;">Veuillez choisir un type </h2>
+<img src="{{logo}}" width="500px">
+
+</div>
+
+</ng-container>
+<ng-container *ngIf="typeRadioButton==='jobs'">
+	<div style=" width: 90%; overflow-x:auto; margin-right: auto; margin-left: auto; overflow-y: auto;" class="responstable">
+	<table class="jobs" >
+		<tr>
+		  <th  rowspan="2">NOM DU JOB REPORTING AUTO</th>
+		  <th rowspan="2">CYCLIQUE</th>
+		  <th rowspan="2">PLANIFICATION</th>
+		  <th colspan="8">JOURS DE PLANIFICATION</th>
+		  <th rowspan="2">STATUT</th>
+		  <th rowspan="2"> JOB À RELANCER</th>
+		  <th rowspan="2">ACTION À MENER EN CAS D'interruption</th>
+		  <th rowspan="2">Action à mener en cas d'ABSENCE</th>
+		  <th colspan="2">PREMIÈRE OCCURRENCE</th>
+		  <th colspan="2">DERNIÈRE OCCURENCE</th>
+		  <th rowspan="2">ITERATIONS</th>
+		  <th colspan="5">DÉTAIL DES STATUS</th>
+
+
+		</tr>
+		<tr id="jour">
+		  <td >Lundi</td>
+		  <td>Mardi</td>
+		  <td>Mercredi</td>
+		  <td>Jeudi</td>
+		  <td>Vendredi</td>
+		  <td>Samedi</td>
+		  <td>Dimanche</td>
+		  <td>Jours Fériés</td>
+		  <td>DATE DE DÉBUT</td>
+		  <td>HEURE DE DÉBUT</td>
+		  <td>DATE DE FIN</td>
+		  <td>HEURE DE FIN</td>
+		  <td>OK</td>
+		  <td>INTERROMPU</td>
+		  <td>running</td>
+		  <td>EN ATTENTE</td>
+		  <td>PRÊT</td>
+		</tr>
+		<ng-container *ngFor="let job of jobs.hits.hits">
+		<tr  *ngIf="searchText === '' || job._source.STATUT.toLowerCase().includes(searchText.toLowerCase()) || job._source.NOMDUJOBREPORTINGAUTO.toLowerCase().includes(searchText.toLowerCase())">
+		  <td>{{job._source.jobname}}</td>
+		  <td>{{job._source.periodic}}</td><!-- "day1": "X", "day2": "X", "day3": "X", "day4": "X", "day5": "X", "day6": "X", "day7": "X", "holidays": "X", "status": "Termine", "rerun": "Non", "fail_action": "Renseigner le CR", "missing_action": "Renseigner le CR", "fo_date": "2023-05-07", "fo_time": "23:00:14", "lo_date": "--", "lo_time": "::", "count": 2, "ok_count": 1, "cancel_count": 0, "act_count": 0, "release_count": 1, "ready_count": 0, "timestamp-->
+		  <td>{{job._source.planning}}</td>
+		  <td>{{job._source.day1}}</td>
+		  <td>{{job._source.day2}}</td>
+		  <td>{{job._source.day3}}</td>
+		  <td>{{job._source.day4}}</td>
+		  <td>{{job._source.day5}}</td>
+		  <td>{{job._source.day6}}</td>
+		  <td>{{job._source.day7}}</td>
+		  <td>{{job._source.holidays}}</td>
+		  <td>{{job._source.status}}</td>
+		  <td>{{job._source.rerun}}</td>
+		  <td>{{job._source.fail_action}}</td>
+		  <td>{{job._source.missing_action}}</td>
+		  <td>{{job._source.fo_date}}</td>
+		  <td>{{job._source.fo_time}}</td>
+		  <td>{{job._source.lo_date}}</td>
+		  <td>{{job._source.lo_time}}</td>
+		  <td>{{job._source.count}}</td>
+		  <td>{{job._source.ok_count}}</td>
+		  <td>{{job._source.cancel_count}}</td>
+		  <td>{{job._source.act_count}}</td>
+		  <td>{{job._source.release_count}}</td>
+
+		  <td>{{job._source.ready_count}}</td>
+
+
+
+		</tr>
+	  </ng-container>
+	  </table>
+</div>
+<button  class="back-to-top" (click)="scrollToTop()">Back to Top</button>
+</ng-container>
+  <!--<button type="button" name="button" id="cercle-style">cercle</button>-->
+<!--*******************'*********************************************************************-->

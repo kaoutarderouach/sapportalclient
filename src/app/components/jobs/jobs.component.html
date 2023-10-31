@@ -1,1 +1,84 @@
-<p>jobs works!</p>
+
+<!-- Button trigger modal -->
+<div class="six" >
+	<h1>Etats des Jobs <br/> {{jobs.hits.hits[0]._source.timestamp | date :'dd/MM/yyyy'}}
+	  <span>{{id}}</span>
+	</h1>
+  </div>
+<app-search (searchTextChanged)="onSearchTextEntered($event)"></app-search>
+<div style=" width: 90%; overflow-x:auto; margin-right: auto; margin-left: auto; overflow-y: auto;" class="responstable">
+<table class="blue" id="customers" >
+  <tr>
+    <th  rowspan="2">NOM DU JOB REPORTING AUTO</th>
+    <th rowspan="2">CYCLIQUE</th>
+    <th rowspan="2">PLANIFICATION</th>
+    <th colspan="8">JOURS DE PLANIFICATION</th>
+    <th rowspan="2">STATUT</th>
+    <th rowspan="2"> JOB À RELANCER</th>
+    <th rowspan="2">ACTION À MENER EN CAS D'interruption</th>
+    <th rowspan="2">Action à mener en cas d'ABSENCE</th>
+    <th colspan="2">PREMIÈRE OCCURRENCE</th>
+    <th colspan="2">DERNIÈRE OCCURENCE</th>
+    <th rowspan="2">ITERATIONS</th>
+    <th colspan="5">DÉTAIL DES STATUS</th>
+
+
+  </tr>
+  <tr id="jour">
+    <td >Lundi</td>
+    <td>Mardi</td>
+    <td>Mercredi</td>
+    <td>Jeudi</td>
+    <td>Vendredi</td>
+    <td>Samedi</td>
+    <td>Dimanche</td>
+    <td>Jours Fériés</td>
+    <td>DATE DE DÉBUT</td>
+    <td>HEURE DE DÉBUT</td>
+    <td>DATE DE FIN</td>
+    <td>HEURE DE FIN</td>
+    <td>OK</td>
+    <td>INTERROMPU</td>
+    <td>EN COURS</td>
+    <td>EN ATTENTE</td>
+    <td>PRÊT</td>
+  </tr>
+  <ng-container *ngFor="let job of jobs.hits.hits">
+  <tr  *ngIf="searchText === '' || job._source.status.toLowerCase().includes(searchText.toLowerCase()) || job._source.jobname.toLowerCase().includes(searchText.toLowerCase())">
+    <td>{{job._source.jobname}}</td>
+    <td class="text-success">{{job._source.periodic}}</td><!-- "day1": "X", "day2": "X", "day3": "X", "day4": "X", "day5": "X", "day6": "X", "day7": "X", "holidays": "X", "status": "Termine", "rerun": "Non", "fail_action": "Renseigner le CR", "missing_action": "Renseigner le CR", "fo_date": "2023-05-07", "fo_time": "23:00:14", "lo_date": "--", "lo_time": "::", "count": 2, "ok_count": 1, "cancel_count": 0, "act_count": 0, "release_count": 1, "ready_count": 0, "timestamp-->
+    <td>{{job._source.planning}}</td>
+    <td class="text-success">{{job._source.day1}}</td>
+    <td class="text-success">{{job._source.day2}}</td>
+    <td class="text-success">{{job._source.day3}}</td>
+    <td class="text-success">{{job._source.day4}}</td>
+    <td class="text-success">{{job._source.day5}}</td>
+    <td class="text-success">{{job._source.day6}}</td>
+    <td class="text-success">{{job._source.day7}}</td>
+    <td class="text-success">{{job._source.holidays}}</td>
+    <td [ngClass]="{
+      'text-success': job._source.status==='Termine',
+    'text-warning': job._source.status==='En cours',
+    'text-info': job._source.status==='Planifié',
+    'text-danger': job._source.status==='Suspendu'}">{{job._source.status}}</td>
+    <td>{{job._source.rerun}}</td>
+    <td>{{job._source.fail_action}}</td>
+    <td>{{job._source.missing_action}}</td>
+    <td>{{job._source.fo_date}}</td>
+    <td>{{job._source.fo_time}}</td>
+    <td>{{job._source.lo_date}}</td>
+    <td>{{job._source.lo_time}}</td>
+    <td>{{job._source.count}}</td>
+    <td>{{job._source.ok_count}}</td>
+    <td>{{job._source.cancel_count}}</td>
+    <td>{{job._source.act_count}}</td>
+    <td>{{job._source.release_count}}</td>
+
+    <td>{{job._source.ready_count}}</td>
+
+
+
+  </tr>
+</ng-container>
+</table>
+</div>
