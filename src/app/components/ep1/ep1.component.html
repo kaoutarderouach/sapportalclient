@@ -1,1 +1,102 @@
-<p>ep1 works!</p>
+<!--<p>--------------------------------Display new post--------------------------------------------</p>
+<p>{{newPost | json}}</p>
+<p> {{newPost.posts[0].milestone}}</p>
+<p>-------------------------------Display Tasks---------------------------------------------</p>
+<p>{{tasks | json}}</p>
+<p>--------------------------------Display elas--------------------------------------------</p>
+<p>{{elas | json}}</p>
+<p>----------------------------------------------------------------------------</p>
+<p>*****Ensemeble des tasks est ici ****************{{tasks.hits.hits[9]._source | json}}</p>
+
+<p>****************************************************************************</p>
+<p *ngFor="let task of tasks.hits.hits">{{task._source | json}}</p>-->
+
+<!--Navbar-->
+<!--
+<table>
+	<tr>
+		<th>
+			level
+		</th>
+		<th>Transaction Code</th>
+		<th>Description</th>
+		<th>EP1</th>
+		<th>Seuil</th>
+	</tr>
+	<tr>
+		<td *ngFor="let task of tasks.hits.hits"> {{task._source.level}}</td>
+	</tr>
+
+</table>
+<table class="table table-striped table-dark">
+	<thead>
+	  <tr>
+		<th scope="col">level</th>
+		<th scope="col">Description</th>
+		<th scope="col">EP1</th>
+		<th scope="col">Seuil</th>
+	  </tr>
+	</thead>
+	<tbody>
+	  <tr *ngFor="let task of tasks.hits.hits" [ngClass]="{
+		'table-success': task._source.level==='OK',
+		'table-danger': task._source.level==='Critical',
+	'table-warning': task._source.level==='Warning'}">
+		<th scope="row" >{{task._source.level}}</th>
+		<td >{{task._source.Description}}</td>
+		<td>{{task._source.EP1}}</td>
+		<td>{{task._source.Seuil}}</td>
+
+	  </tr>
+
+	</tbody>
+  </table>
+<style>
+	.center {
+  text-align: center;
+  border: 3px solid green;
+}
+</style>
+-->
+{{tasks|json}}
+
+ <!--*********************la table qui affiche les comptes rend-->
+ <table class="blue" style="margin-bottom: 500px;" >
+	<thead>
+	  <tr>
+		<th scope="col">sid</th>
+		<th scope="col">level</th>
+		<th scope="col">Tcode</th>
+		<th scope="col">Description</th>
+		<th scope="col">EP1</th>
+		<th scope="col">Seuil</th>
+	  </tr>
+	</thead>
+	<tbody>
+		<tr *ngFor="let task of tasks.hits.hits ">
+			<td >{{task._source.sid}}</td>
+			<th scope="row" [ngClass]="{
+				'text-success': task._source.level==='OK',
+				'text-danger': task._source.level==='Critical',
+			'text-warning': task._source.level==='Warning'}">{{task._source.level}}</th>
+
+				<td >{{task._source.tcode}}</td>
+			<td >{{task._source.desc}}</td>
+			<td>{{task._source.value}}</td>
+			<td>{{task._source.threshold}}</td>
+
+		  </tr>
+
+
+
+
+
+
+
+
+	</tbody>
+  </table>
+  <div style="width: 50%; margin-left: auto; margin-right: auto; margin-top: 50px;">
+	<canvas id="canvas"></canvas>
+</div>
+
