@@ -1,1 +1,118 @@
-<p>top-widgets works!</p>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<a class="nav-link" [routerLink]="['/compteRendu/EB1']" >
+<div class="widget-container" style="margin-left: 70px">
+	<div class="widget blue">
+		<div class="icon">
+			<i class="fa fa-regular fa-file"></i>
+		</div>
+		<div class="value">
+		  <div class="top">Etat </div>
+		  <div class="bottom">Systèmes</div>
+		</div>
+	  </div>
+	<ng-container *ngFor="let task of tasks.aggregations.unique_values.buckets">
+
+	<div class="widget" [class]="{'green':task.key==='OK','yellow':task.key==='Warning','red':task.key==='Critical','blue':task.key===''}" *ngIf="task.key==='OK'||task.key==='Warning'||task.key==='Critical'">
+	  <div class="icon">
+		<i *ngIf="task.key==='OK'" class="fa fa-thin fa-circle-check"></i>
+		<i *ngIf="task.key==='Warning'" class="fa fa-regular fa-triangle-exclamation"></i>
+		<i *ngIf="task.key==='Critical'" class="fa fa-light fa-ban"></i>
+
+		<i *ngIf="task.key===''" class="fa fa-light fa-xmark"></i>
+	  </div>
+	  <div class="value">
+		<div class="top">{{task.doc_count}}</div>
+		<div class="bottom">{{task.key}}</div>
+		<div class="bottom" *ngIf="task.key===''">Missing value</div>
+	  </div>
+	</div>
+</ng-container>
+  </div>
+</a>
+<a class="nav-link" [routerLink]="['/backup/EB1']" >
+  <div class="widget-container" style="margin-left: 70px">
+	<div class="widget blue">
+		<div class="icon">
+			<i class="fa fa-solid fa-database"></i>
+		</div>
+		<div class="value">
+		  <div class="top">Etat</div>
+		  <div class="bottom">Sauvegardes</div>
+		</div>
+	  </div>
+
+<ng-container *ngFor="let backup of backups.aggregations.unique_values.buckets">
+
+	<div class="widget" [class]="{'green':backup.key==='successful','yellow':backup.key==='running','red':backup.key==='failed'}" *ngIf="backup.key==='successful'||backup.key==='running'||backup.key==='failed'" >
+	  <div class="icon">
+		<i *ngIf="backup.key==='successful'" class="fa fa-solid fa-thumbs-up"></i>
+
+
+		<i *ngIf="backup.key==='failed'" class="fa fa-solid fa-thumbs-down"></i>
+		<i *ngIf="backup.key==='running'"  class="fa fa-solid fa-gears"></i>
+
+
+		<i *ngIf="backup.key===''" class="fa fa-light fa-xmark"></i>
+	  </div>
+	  <div class="value">
+		<div class="top">{{backup.doc_count}}</div>
+		<div class="bottom">{{backup.key}}</div>
+		<div class="bottom" *ngIf="backup.key===''">Missing value</div>
+	  </div>
+	</div>
+</ng-container>
+  </div>
+  </a>
+
+<a class="nav-link" [routerLink]="['/jobs']" >
+	<div class="widget-container" style="margin-left: 70px">
+	  <div class="widget blue">
+		  <div class="icon">
+			<i class="fa fa-sharp fa-solid fa-gear"></i>
+		  </div>
+		  <div class="value">
+			<div class="top">Etat</div>
+			<div class="bottom">Jobs</div>
+		  </div>
+		</div>
+  <ng-container *ngFor="let job of jobs.aggregations.unique_values.buckets">
+	  <div class="widget" [class]="{'green':job.key==='Planifié','yellow':job.key==='En cours','red':job.key==='Suspendu','blue':job.key===''}" *ngIf="(job.key==='Planifié' || job.key==='Suspendu' || job.key==='En cours')" >
+		<div class="icon">
+		  <i *ngIf="job.key==='Planifié'" class="fa fa-thin fa-square-check"></i>
+		 <i *ngIf="job.key==='Suspendu'" class="fa fa-solid fa-thumbs-down"></i>
+		  <i *ngIf="job.key==='En cours'"  class="fa fa-solid fa-calendar-days"></i>
+		 <!-- <i   class="fa fa-solid fa-gears"></i>-->
+
+		  <i *ngIf="job.key===''" class="fa fa-light fa-xmark"></i>
+		</div>
+		<div class="value">
+		  <div class="top">{{job.doc_count}}</div>
+		  <div class="bottom">{{job.key}}</div>
+		  <div class="bottom" *ngIf="job.key===''">Missing value</div>
+		</div>
+	  </div>
+  </ng-container>
+	</div>
+	</a>
+<style>
+	@media (max-width: 767px) {
+  /* Styles pour les écrans étroits (téléphones) */
+  td {
+    display: block;
+    margin-bottom: 10px;
+  }
+}
+
+@media (min-width: 768px) {
+  /* Styles pour les écrans larges (ordinateurs) */
+  td {
+    display: table-cell;
+    vertical-align: middle;
+    padding: 10px;
+  }
+}
+
+</style>

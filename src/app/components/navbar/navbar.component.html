@@ -1,1 +1,139 @@
-<p>navbar works!</p>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- ... autres balises head ... -->
+  </head>
+
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+  <nav class="  navbar navbar-icon-top navbar-expand-lg navbar-dark bg-dark  " routerLinkActive = "active" >
+	<a class="navbar-brand" [routerLink]="['/dashboard']"> <!--<i class="fa fa-user"></i> --> <img src="{{logo}}" width="200px"> </a>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+	  <span class="navbar-toggler-icon"></span>
+	</button>
+
+	<div class="collapse navbar-collapse" id="navbarSupportedContent">
+	  <ul class="navbar-nav mr-auto">
+		<li class="nav-item ">
+		  <a class="nav-link" [routerLink]="['/dashboard']" routerLinkActive = "active">
+			<i class="fa fa-regular fa-chart-line"></i>
+			Dashboard
+			<span class="sr-only"></span>
+			</a>
+		</li>
+
+
+		<li class="nav-item dropdown" >
+		  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			<i class="fa fa-file-lines  "></i>
+
+
+		   Les comptes rendus
+		  </a>
+		  <div class="dropdown-menu" aria-labelledby="navbarDropdown" routerLinkActive = "active" style="background-color: black;">
+			<a class="dropdown-item" href="#" *ngFor="let task of tasks.aggregations.unique_values.buckets" [routerLink]="['/compteRendu', task.key]" routerLinkActive = "active"> {{task.key}}</a>
+
+		  </div>
+		</li>
+		<li class="nav-item dropdown" style="margin-left: auto;">
+		  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			<i class="fa fa-solid fa-gears"></i>
+
+			Les jobs
+		  </a>
+		  <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="margin-left: 50px; background-color: black;">
+			<a class="dropdown-item" href="#" *ngFor="let job of jobs.aggregations.unique_values.buckets" [routerLink]="['/job', job.key]" routerLinkActive = "active"> {{job.key}}</a>
+
+
+		  </div>
+		</li>
+		<li class="nav-item dropdown" style="margin-left: auto;">
+		  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			<i class="fa fa-solid fa-database"></i>
+		   Les sauvegardes
+		  </a>
+		  <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="margin-left: 50px; background-color: black;">
+
+			<a class="dropdown-item" href="#" routerLink="/backup" >Sauvegardes</a>
+			<a class="dropdown-item" href="#" *ngFor="let backup of backups.aggregations.unique_values.buckets" [routerLink]="['backup/', backup.key]" routerLinkActive = "active"> {{backup.key}}</a>
+
+
+			<div class="dropdown-divider"></div>
+			<a class="dropdown-item" href="#" routerLink="/log">Archivage</a>
+			<a class="dropdown-item" href="#" *ngFor="let log of backups.aggregations.unique_values.buckets" [routerLink]="['log/', log.key]" routerLinkActive = "active"> {{log.key}}</a>
+
+
+
+		  </div>
+		</li>
+		<li>
+
+		<li class="nav-item" style="margin-left: auto;">
+		  <a class="nav-link" href="#" routerLink="/historique" routerLinkActive = "active">
+			<i class="fa fa-thin fa-clock-rotate-left">
+
+			</i>
+			Historique
+		  </a>
+		</li>
+		<li *ngIf="admin==1"  class="nav-item" style="margin-left: auto;">
+		  <a class="nav-link" href="#" routerLink="/users" routerLinkActive = "active">
+			<i class="fa fa-thin fa-users">
+
+			</i>
+		   Admin
+		  </a>
+		</li>
+		<li class="nav-item" style="margin-left: auto;">
+		  <a class="nav-link" href="#"  [routerLink]="['profile/', idUser]"  routerLinkActive = "active">
+			<i class="fa fa-thin fa-user">
+
+			</i>
+		 {{user}}
+		  </a>
+		</li>
+		  <li class="nav-item" style="margin-left: auto;">
+		  <a class="nav-link" href="#" >
+			<i class="fa fa-thin fa-sign-out" >
+
+			</i>
+			Se déconnecter
+		  </a>
+		</li>
+
+
+	  </ul>
+
+
+
+	</div>
+  </nav>
+
+
+  <style>
+	i{
+	  color:  rgba(255, 255, 255, 0.829);
+	}
+	a{
+	  color: #fff;
+	}
+	.navbar i:hover {
+	  color:  rgba(255, 111, 0, 0.829);
+	}
+
+	.navbar{
+	  background-color: black;
+	}
+	.navbar a:hover{
+	  color:  rgba(255, 111, 0, 0.829);
+	}
+
+	.navbar .nav-link.active {
+	color:  rgba(255, 111, 0, 0.829);
+  }
+  .navbar .nav-link.active i {
+	color:  rgba(255, 111, 0, 0.829);
+  }
+
+  </style>

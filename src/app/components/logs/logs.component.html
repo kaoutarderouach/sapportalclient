@@ -1,1 +1,47 @@
-<p>logs works!</p>
+
+
+
+<!--******************************la table qui affiche la liste de sauvgarde************************************************-->
+
+
+<div class="six">
+	<h1>Liste des derniers archivages<br/> {{backups.hits.hits[0]._source.timestamp | date :'shortDate'}}
+	  <span>{{id}}</span>
+	</h1>
+</div>
+<app-search (searchTextChanged)="onSearchTextEntered($event)"></app-search>
+<table class="blue" style="width: 90%; overflow-x:auto; margin-right: auto; margin-left: auto; overflow-y: auto; margin-top: 10px;">
+   <thead>
+	 <tr>
+	   <th>SID </th>
+	   <th>SYS_START_TIME </th>
+	   <th>SYS_END_TIME</th>
+	   <th>ENTRY_TYPE_NAME</th>
+	   <th>STATE_NAME</th>
+	   <th>Type</th>
+
+	 </tr>
+   </thead>
+   <tbody>
+	   <ng-container *ngFor="let log of logs.hits.hits ">
+	 <tr  *ngIf="searchText === '' || log._source.sid.toLowerCase().includes(searchText.toLowerCase()) || log._source.state_name.toLowerCase().includes(searchText.toLowerCase())">
+	   <td>{{log._source.sid}}</td>
+	   <td>{{log._source.sys_start_time }}</td>
+	   <td>{{log._source.sys_end_time }}</td>
+	   <td>{{log._source.entry_type_name}}</td>
+	   <td  [ngClass]="{
+		   'text-success': log._source.state_name==='successful',
+		   'text-danger': log._source.state_name==='failed',
+		   'text-warning': log._source.state_name==='running'}">{{log._source.state_name}}</td>
+		   <td>{{log._source.type}}</td>
+	 </tr>
+
+   </ng-container>
+
+
+
+
+
+
+   </tbody>
+ </table>
