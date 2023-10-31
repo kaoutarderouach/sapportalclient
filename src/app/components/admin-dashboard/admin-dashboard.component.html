@@ -1,1 +1,51 @@
-<p>admin-dashboard works!</p>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<div class="container">
+
+  <div class="modal fade" id="modalLoginForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <form (ngSubmit)="onSubmit()">
+          <div class="modal-header text-center">
+            <h4 class="modal-title w-100 font-weight-bold">Ajouter un nouvel utilisateur</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body mx-3">
+            <div class="md-form mb-5">
+              <i class="fa fa-envelope prefix grey-text"></i>
+              <input type="email" id="defaultForm-email-ajout" class="form-control validate" [(ngModel)]="username"
+                name="username">
+              <label data-error="wrong" data-success="right" for="defaultForm-email-ajout">Identifiant</label>
+            </div>
+            <div class="md-form mb-4">
+              <i class="fa fa-user prefix grey-text"></i>
+              <input type="text" id="defaultForm-name-ajout" class="form-control validate" [(ngModel)]="name"
+                name="name">
+              <label data-error="wrong" data-success="right" for="defaultForm-name-ajout">Nom d'utilisateur</label>
+            </div>
+            <div class="md-form mb-4">
+              <select name="role" id="role-select-ajout" class="form-control" [(ngModel)]="role">
+                <option value="0">Utilisateur</option>
+                <option value="1">Administrateur</option>
+              </select>
+              <label for="role-select-ajout">Attribuer un rôle</label>
+            </div>
+          </div>
+          <div class="modal-footer d-flex justify-content-center">
+            <button type="submit" class="btn btn-success">Ajouter</button>
+            <button class="btn btn-warning " data-dismiss="modal">Annuler</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+.modal-header {
+  background: #33bc41;
+}
+
+</style>
