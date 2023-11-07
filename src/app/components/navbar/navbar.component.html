@@ -17,7 +17,8 @@
 	  <ul class="navbar-nav mr-auto">
 		<li class="nav-item ">
 		  <a class="nav-link" [routerLink]="['/dashboard']" routerLinkActive = "active">
-			<i class="fa fa-regular fa-chart-line"></i>
+			<!--<img src="{{dash}}" alt="Icône" style="width: 24px; height: 24px; color: #ff0000;">-->
+			<i class="fa fa-dashboard" aria-hidden="true"></i>
 			Dashboard
 			<span class="sr-only"></span>
 			</a>
@@ -26,7 +27,7 @@
 
 		<li class="nav-item dropdown" >
 		  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-			<i class="fa fa-file-lines  "></i>
+			<i class="fa fa-book" aria-hidden="true"></i>
 
 
 		   Les comptes rendus
@@ -71,9 +72,7 @@
 
 		<li class="nav-item" style="margin-left: auto;">
 		  <a class="nav-link" href="#" routerLink="/historique" routerLinkActive = "active">
-			<i class="fa fa-thin fa-clock-rotate-left">
-
-			</i>
+			<i class="fa fa-history" aria-hidden="true"></i>
 			Historique
 		  </a>
 		</li>

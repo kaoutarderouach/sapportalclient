@@ -15,7 +15,7 @@ import { JobService } from 'src/app/services/job.service';
 })
 export class NavbarComponent implements OnInit{
   logo = 'assets/images/logo.svg'
-
+  dash = 'assets/images/check-solid.svg'
 
   //tasks: EP1[] = [];
   tasks =  {} as any;

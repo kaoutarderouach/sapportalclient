@@ -17,8 +17,8 @@
 
 	<div class="widget" [class]="{'green':task.key==='OK','yellow':task.key==='Warning','red':task.key==='Critical','blue':task.key===''}" *ngIf="task.key==='OK'||task.key==='Warning'||task.key==='Critical'">
 	  <div class="icon">
-		<i *ngIf="task.key==='OK'" class="fa fa-thin fa-circle-check"></i>
-		<i *ngIf="task.key==='Warning'" class="fa fa-regular fa-triangle-exclamation"></i>
+		<i *ngIf="task.key==='OK'" class="fa fa-solid fa-thumbs-up"></i>
+		<i *ngIf="task.key==='Warning'" class="fa fa-warning" aria-hidden="true"></i>
 		<i *ngIf="task.key==='Critical'" class="fa fa-light fa-ban"></i>
 
 		<i *ngIf="task.key===''" class="fa fa-light fa-xmark"></i>
@@ -81,10 +81,10 @@
   <ng-container *ngFor="let job of jobs.aggregations.unique_values.buckets">
 	  <div class="widget" [class]="{'green':job.key==='Planifié','yellow':job.key==='En cours','red':job.key==='Suspendu','blue':job.key===''}" *ngIf="(job.key==='Planifié' || job.key==='Suspendu' || job.key==='En cours')" >
 		<div class="icon">
-		  <i *ngIf="job.key==='Planifié'" class="fa fa-thin fa-square-check"></i>
+		  <i *ngIf="job.key==='En cours'" class="fa fa-solid fa-gears"></i>
 		 <i *ngIf="job.key==='Suspendu'" class="fa fa-solid fa-thumbs-down"></i>
-		  <i *ngIf="job.key==='En cours'"  class="fa fa-solid fa-calendar-days"></i>
-		 <!-- <i   class="fa fa-solid fa-gears"></i>-->
+		  <i *ngIf="job.key==='Planifié'"  class="fa fa-calendar" aria-hidden="true"></i>
+
 
 		  <i *ngIf="job.key===''" class="fa fa-light fa-xmark"></i>
 		</div>
