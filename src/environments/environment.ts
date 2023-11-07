@@ -2,5 +2,5 @@
 export const environment = {
 	production: false,
 	apiUsername: 'elastic',
-	apiPassword: 'e92Y2nhvocEsBLbfOIBg',
+	apiPassword: '50qAV55l6AlAYcEp1Sp6',
   };
