@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 </head>
+
 <app-login *ngIf="logged==0" (event)="receiveMessage($event)"></app-login>
 <ng-container *ngIf="logged==1">
 <app-navbar [user]="message.username" *ngIf="message.role==1" [admin]="1" [idUser]="message.id"></app-navbar>
