@@ -187,4 +187,36 @@ export class BackupsService {
       }
     }, { headers });
   }
+  findDashboard() {
+    // Obtenez les en-têtes d'authentification
+    const headers = this.getHeaders();
+
+    // Obtenez la date d'aujourd'hui au format ISO8601 (YYYY-MM-DD)
+    const today = new Date().toISOString().split('T')[0];
+
+    return this.http.post<any[]>(this.apiurl, {
+      "size": 0,
+      "query": {
+        "bool": {
+          "filter": [
+            {
+              "range": {
+                "timestamp": {
+                  "gte": "now/d",
+                  "lt": "now+1d/d"// if you have an end date (exclusive)
+                }
+              }
+            }
+          ]
+        }
+      },
+      "aggs": {
+        "unique_values": {
+          "terms": {
+            "field": "state_name.keyword",
+            "size": 10
+          }
+        }
+      }
+    }, { headers });}
 }
