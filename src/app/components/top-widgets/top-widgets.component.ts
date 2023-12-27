@@ -30,16 +30,16 @@ export class TopWidgetsComponent implements OnInit{
   }
   constructor(private compteRendu:CompteRendusService, private backupService:BackupsService, private jobService:JobService){}
   getEp1(){
-    this.compteRendu.findOK()
+    this.compteRendu.findDashboard()
          .subscribe(tasks => {this.resultTasks = this.tasks = tasks})
 
    }
    getBackup(){
-    this.backupService.findOK()
+    this.backupService.findDashboard()
     .subscribe(backups => {this.resultBackups= this.backups = backups})
    }
    getJob(){
-    this.jobService.findOK()
+    this.jobService.findDashboard()
     .subscribe(jobs => {this.resultJobs= this.jobs = jobs})
 
    }
