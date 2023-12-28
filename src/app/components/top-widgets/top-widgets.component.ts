@@ -43,4 +43,8 @@ export class TopWidgetsComponent implements OnInit{
     .subscribe(jobs => {this.resultJobs= this.jobs = jobs})
 
    }
+   getSysDashboard(){
+    this.compteRendu.findDashboardForMonth()
+    .subscribe(jobs => {this.resultJobs= this.jobs = jobs})
+   }
 }

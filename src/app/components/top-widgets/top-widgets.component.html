@@ -1,6 +1,5 @@
 <head>
-	{{tasks | json}}
-	{{backups | json}}
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <a class="nav-link" [routerLink]="['/compteRendu/EQ1']" >
@@ -11,7 +10,7 @@
 		</div>
 		<div class="value">
 		  <div class="top">Etat </div>
-		  <div class="bottom">Systèmes</div>
+		  <div class="bottom">Systèmes d'aujourd'hui</div>
 		</div>
 	  </div>
 	<ng-container *ngFor="let task of tasks.aggregations.unique_values.buckets">
@@ -41,7 +40,7 @@
 		</div>
 		<div class="value">
 		  <div class="top">Etat</div>
-		  <div class="bottom">Sauvegardes</div>
+		  <div class="bottom">Sauvegardes d'aujourd'hui</div>
 		</div>
 	  </div>
 
@@ -76,7 +75,7 @@
 		  </div>
 		  <div class="value">
 			<div class="top">Etat</div>
-			<div class="bottom">Jobs</div>
+			<div class="bottom">Jobs d'aujourd'hui</div>
 		  </div>
 		</div>
   <ng-container *ngFor="let job of jobs.aggregations.unique_values.buckets">

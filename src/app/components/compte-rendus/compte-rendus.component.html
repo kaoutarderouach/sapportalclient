@@ -39,7 +39,7 @@
 			<td scope="row" [ngClass]="{
 				'text-success ': task._source.level==='OK',
 				'text-danger': task._source.level==='Critical',
-			'text-warning': task._source.level==='warning'}">
+			'text-warning': task._source.level==='Warning'}">
 			{{task._source.level}}</td>
 			<td *ngIf="task?.property !== null">{{task._source.tcode}}</td>
 			<td >{{task._source.desc}}</td>
