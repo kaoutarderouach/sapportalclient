@@ -39,6 +39,7 @@ import { FilterTypeComponent } from './components/filter-type/filter-type.compon
 
 import { ProfileComponent } from './components/profile/profile.component';
 import { TopWidgetsComponent } from './components/top-widgets/top-widgets.component';
+import { SysByMonthComponent } from './components/sys-by-month/sys-by-month.component';
 
 
 
@@ -72,6 +73,7 @@ import { TopWidgetsComponent } from './components/top-widgets/top-widgets.compon
       FilterTypeComponent,
       ProfileComponent,
       TopWidgetsComponent,
+      SysByMonthComponent,
 
 
 

@@ -4,6 +4,7 @@ import { Observable,Subscription, interval  } from 'rxjs';
 import { BackupsService } from 'src/app/services/backups.service';
 import { CompteRendusService } from 'src/app/services/compte-rendus.service';
 import { Router } from '@angular/router';
+import { JobService } from 'src/app/services/job.service';
 
 
 @Component({
@@ -14,8 +15,12 @@ import { Router } from '@angular/router';
 export class DashboardComponent implements OnInit {
 
   public chart: any;
+  public chartBackup:any;
+  public chartJob:any;
    data: any;
-  constructor(private backupservice:BackupsService, private compteRendu:CompteRendusService,private router: Router){
+   dataBackup: any;
+   dataJob: any;
+  constructor(private backupservice:BackupsService, private jobservice: JobService, private compteRendu:CompteRendusService,private router: Router){
 
   }
 
@@ -36,16 +41,38 @@ export class DashboardComponent implements OnInit {
   ngOnInit(): void {
     //this.getBackup()
     this.loadData()
+    this.loadDataBackup()
+    this.loadDataJob()
 
 
   }
   loadData() {
     this.compteRendu.findDashboardForMonth().subscribe((response) => {
-      console.log('Données Elasticsearch:', response);
+
       this.data = this.processData(response);
 
     //  this.createChart(this.data);
-      this.createChartTest()
+      this.createChartSys()
+
+    });
+  }
+  loadDataBackup() {
+    this.backupservice.findDashboardForMonth().subscribe((response) => {
+
+      this.dataBackup = this.processDataBackup(response);
+
+    //  this.createChart(this.data);
+      this.createChartBackup()
+
+    });
+  }
+  loadDataJob() {
+    this.jobservice.findDashboardForMonth().subscribe((response) => {
+
+      this.dataJob = this.processDataJob(response);
+
+    //  this.createChart(this.data);
+      this.createChartJob()
 
     });
   }
@@ -85,57 +112,146 @@ export class DashboardComponent implements OnInit {
 
     return { labels, docCounts,warningCounts,okCounts, criticalCounts };
   }
+  processDataBackup(response: any) {
+    const labels: any[] = [];
+    const docCounts: any[] = [];
+    const failedCounts: any[] = [];
+    const runningCounts: any[] = [];
+    const successfulCounts: any[] = [];
+
+    response.aggregations.daily_values.buckets.forEach((day: any) => {
+      labels.push(day.key_as_string);
+     // docCounts.push(day.unique_values.buckets.key);
+
+     const uniqueValuesBucket = day.unique_values.buckets;
+
+     // Recherchez les valeurs "Critical", "Warning" et "OK" dans le seau unique_values
+     const failedValue = uniqueValuesBucket.find((item: any) => item.key === 'failed');
+     const runningValue = uniqueValuesBucket.find((item: any) => item.key === 'running');
+     const successfulValue = uniqueValuesBucket.find((item: any) => item.key === 'successful');
+
+     // Ajoutez les doc_count correspondants aux tableaux respectifs
+     failedCounts.push(failedValue ? failedValue.doc_count : 0);
+     runningCounts.push(runningValue ? runningValue.doc_count : 0);
+     successfulCounts.push(successfulValue ? successfulValue.doc_count : 0);
+   });
 
 
+  this.dataBackup = {
+    labels: labels,
+    docCounts: docCounts,
+    runningCounts: runningCounts,
+    successfulCounts: successfulCounts,
+    failedCounts: failedCounts,
 
-  createChart(data: any) {
-    const canvas: any = document.getElementById('myChart');
-    const ctx = canvas.getContext('2d');
+  };
 
-
-    this.chart = new Chart(ctx, {
-      type: 'line',
-      data: {
-        labels: data.labels,
-        datasets: [
-          {
-            label: 'Evolution du doc_count',
-            data: data.docCounts,
-            fill: false,
-            borderColor: 'rgb(75, 192, 192)',
-            tension: 0.1,
-          },
-        ],
-      },
-      options: {
-        scales: {
-          x: {
-            type: 'time',
-            time: {
-              unit: 'day',
-            },
-            title: {
-              display: true,
-              text: 'Jour',
-            },
-          },
-          y: {
-            title: {
-              display: true,
-              text: 'doc_count',
-            },
-          },
-        },
-      },
-    });
+    return { labels, docCounts,runningCounts,successfulCounts, failedCounts };
   }
 
 
-  createChartTest() {
-    console.log("data from chart js ", this.data.labels);
-    console.log("values from chart js ", this.data.docCounts);
-    console.log("data.this.data.warningCounts",this.data.warningCounts)
-    console.log("values from chart js okCounts", this.data.criticalCounts);
+  processDataJob(response: any) {
+    const labels: any[] = [];
+    const docCounts: any[] = [];
+    const SuspenduCounts: any[] = [];
+    const encoursCounts: any[] = [];
+    const PlanifieCounts: any[] = [];
+
+    response.aggregations.daily_values.buckets.forEach((day: any) => {
+      labels.push(day.key_as_string);
+     // docCounts.push(day.unique_values.buckets.key);
+
+     const uniqueValuesBucket = day.unique_values.buckets;
+
+     // Recherchez les valeurs "Critical", "Warning" et "OK" dans le seau unique_values
+     const SuspenduValue = uniqueValuesBucket.find((item: any) => item.key === 'Suspendu');
+     const encoursValue = uniqueValuesBucket.find((item: any) => item.key === 'En cours');
+     const PlanifieValue = uniqueValuesBucket.find((item: any) => item.key === 'Planifié');
+
+     // Ajoutez les doc_count correspondants aux tableaux respectifs
+     SuspenduCounts.push(SuspenduValue ? SuspenduValue.doc_count : 0);
+     encoursCounts.push(encoursValue ? encoursValue.doc_count : 0);
+     PlanifieCounts.push(PlanifieValue ? PlanifieValue.doc_count : 0);
+   });
+
+
+  this.dataJob = {
+    labels: labels,
+    docCounts: docCounts,
+    encoursCounts: encoursCounts,
+    PlanifieCounts: PlanifieCounts,
+    SuspenduCounts: SuspenduCounts,
+
+  };
+
+    return { labels, docCounts,encoursCounts,PlanifieCounts, SuspenduCounts };
+  }
+
+  createChartBackup() {
+
+
+
+    this.chartBackup = new Chart("MyChartBackup", {
+      type: 'line',
+      data: {
+        labels: this.dataBackup.labels,
+        datasets: [
+          {
+            label: "failed",
+            data: this.dataBackup.failedCounts,
+            backgroundColor: 'red'
+          },
+          {
+            label: "running",
+            data: this.dataBackup.runningCounts,
+            backgroundColor: 'orange'
+          },
+          {
+            label: "successful",
+            data: this.dataBackup.successfulCounts,
+            backgroundColor: 'green'
+          }
+        ]
+      },
+      options: {
+        aspectRatio: 2.5
+      }
+    });
+  }
+  createChartJob() {
+
+
+
+    this.chartJob= new Chart("MyChartJob", {
+      type: 'line',
+      data: {
+        labels: this.dataJob.labels,
+        datasets: [
+          {
+            //encoursCounts,PlanifieCounts, SuspenduCounts
+            label: "Suspendu",
+            data: this.dataJob.SuspenduCounts,
+            backgroundColor: 'red'
+          },
+          {
+            label: "Planifié",
+            data: this.dataJob.PlanifieCounts,
+            backgroundColor: 'orange'
+          },
+          {
+            label: "En cours",
+            data: this.dataJob.encoursCounts,
+            backgroundColor: 'green'
+          }
+        ]
+      },
+      options: {
+        aspectRatio: 2.5
+      }
+    });
+  }
+  createChartSys() {
+
 
 
     this.chart = new Chart("MyChart", {
@@ -165,6 +281,7 @@ export class DashboardComponent implements OnInit {
       }
     });
   }
+
 
   refreshPage(): void {
     this.router.navigate(['./refresh'], { skipLocationChange: true }).then(() => {

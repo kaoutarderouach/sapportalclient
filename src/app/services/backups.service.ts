@@ -219,4 +219,60 @@ export class BackupsService {
         }
       }
     }, { headers });}
+    findDashboardForMonth() {
+      // Obtenez les en-têtes d'authentification
+      const headers = this.getHeaders();
+
+      // Obtenez la date d'aujourd'hui
+      const today = new Date();
+
+      // Construisez la date du premier jour du mois en cours
+      const firstDayOfMonth = new Date(today.getFullYear(), today.getMonth(), 1);
+      const firstDayOfMonthISO = firstDayOfMonth.toISOString().split('T')[0];
+
+      // Construisez la date du premier jour du mois suivant
+      const firstDayOfNextMonth = new Date(today.getFullYear(), today.getMonth() + 1, 1);
+      const firstDayOfNextMonthISO = firstDayOfNextMonth.toISOString().split('T')[0];
+
+      return this.http.post<any[]>(this.apiurl, {
+        "size": 0,
+        "query": {
+          "bool": {
+            "filter": [
+              {
+                "range": {
+                  "timestamp": {
+                    "gte": firstDayOfMonthISO,
+                    "lt": firstDayOfNextMonthISO
+                  }
+                }
+              }
+            ]
+          }
+        },
+        "aggs": {
+          "daily_values": {
+            "date_histogram": {
+              "field": "timestamp",
+              "interval": "day", // Agréger par jour
+              "format": "yyyy-MM-dd",
+              "min_doc_count": 0, // Inclure les jours sans données
+              "extended_bounds": {
+                "min": firstDayOfMonthISO,
+                "max": firstDayOfNextMonthISO
+              }
+            },
+            "aggs": {
+              "unique_values": {
+                "terms": {
+                  "field": "state_name.keyword",
+                  "size": 10
+                }
+              }
+            }
+          }
+        }
+      }, { headers });
+    }
+
 }
