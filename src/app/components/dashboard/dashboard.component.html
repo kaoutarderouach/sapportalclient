@@ -2,15 +2,47 @@
 <!-- dashboard.component.html -->
 <!-- dashboard.component.html -->
 
+<app-top-widgets></app-top-widgets>
+<br><br><br>
+<div class="container " style=" margin-left: 250px;">
+    <div class="row">
+        <div class="col-8">
 <div class="chart-container">
     <canvas  id="MyChart" >{{ chart }}</canvas>
+</div>
+<p>Etats des systèmes pour le mois <span>{{currentMonth}} </span> </p>
+</div>
 
+</div>
+<div class="row">
+<div class="col-sm-8">
 <div class="chart-container">
     <canvas  id="MyChartBackup" >{{ chartBackup }}</canvas>
 </div>
-
+<p>Etats des Sauvegardes pour le mois <span>{{currentMonth}} </span> </p>
+</div>
+</div>
+<div class="row">
+<div class="col-sm-8">
 <div class="chart-container">
     <canvas  id="MyChartJob" >{{ chartJob }}</canvas>
 </div>
+<p>Etats des jobs pour le mois <span>{{currentMonth}} </span> </p>
+</div>
+</div>
+</div>
+<style>
+/* dashboard.component.css */
 
-<app-top-widgets></app-top-widgets>
+p {
+  display: block; /* Permet de centrer le texte horizontalement */
+  text-align: center; /* Centrer le texte horizontalement */
+  font-size: 18px; /* Taille de police (ajustez selon vos besoins) */
+  margin: 20px 0; /* Ajouter de la marge pour un meilleur espacement (ajustez selon vos besoins) */
+  color: #000000; /* Couleur du texte (ajustez selon vos besoins) */
+
+}
+span {
+    color:rgb(255, 162, 0)
+}
+</style>

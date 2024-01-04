@@ -231,8 +231,8 @@ export class BackupsService {
       const firstDayOfMonthISO = firstDayOfMonth.toISOString().split('T')[0];
 
       // Construisez la date du premier jour du mois suivant
-      const firstDayOfNextMonth = new Date(today.getFullYear(), today.getMonth() + 1, 1);
-      const firstDayOfNextMonthISO = firstDayOfNextMonth.toISOString().split('T')[0];
+      const lastDayOfMonth = new Date(today.getFullYear(), today.getMonth() + 1, 0); // dernier jour du mois en cours
+      const lastDayOfMonthISO = lastDayOfMonth.toISOString().split('T')[0];
 
       return this.http.post<any[]>(this.apiurl, {
         "size": 0,
@@ -243,7 +243,7 @@ export class BackupsService {
                 "range": {
                   "timestamp": {
                     "gte": firstDayOfMonthISO,
-                    "lt": firstDayOfNextMonthISO
+                    "lt": lastDayOfMonthISO
                   }
                 }
               }
@@ -259,7 +259,7 @@ export class BackupsService {
               "min_doc_count": 0, // Inclure les jours sans données
               "extended_bounds": {
                 "min": firstDayOfMonthISO,
-                "max": firstDayOfNextMonthISO
+                "max": lastDayOfMonthISO
               }
             },
             "aggs": {
@@ -274,5 +274,6 @@ export class BackupsService {
         }
       }, { headers });
     }
+
 
 }

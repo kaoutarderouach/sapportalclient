@@ -5,6 +5,7 @@ import { BackupsService } from 'src/app/services/backups.service';
 import { CompteRendusService } from 'src/app/services/compte-rendus.service';
 import { Router } from '@angular/router';
 import { JobService } from 'src/app/services/job.service';
+import { formatDate } from '@angular/common';
 
 
 @Component({
@@ -20,6 +21,7 @@ export class DashboardComponent implements OnInit {
    data: any;
    dataBackup: any;
    dataJob: any;
+   currentMonth: string ="";
   constructor(private backupservice:BackupsService, private jobservice: JobService, private compteRendu:CompteRendusService,private router: Router){
 
   }
@@ -28,6 +30,12 @@ export class DashboardComponent implements OnInit {
    this.compteRendu.findAll()
         .subscribe(tasks => {this.resultTasks = this.tasks = tasks})
 
+  }
+  setCurrentMonth() {
+    const currentDate = new Date();
+    const options = { month: 'long' } as Intl.DateTimeFormatOptions;
+    this.currentMonth = new Intl.DateTimeFormat('fr-FR', options).format(currentDate);
+    
   }
 
   private updateSubscription!: Subscription;
@@ -40,9 +48,10 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
     //this.getBackup()
-    this.loadData()
-    this.loadDataBackup()
-    this.loadDataJob()
+    this.loadData();
+    this.loadDataBackup();
+    this.loadDataJob();
+    this.setCurrentMonth();
 
 
   }

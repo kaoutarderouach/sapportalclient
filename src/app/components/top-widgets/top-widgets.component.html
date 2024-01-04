@@ -4,6 +4,7 @@
 </head>
 <a class="nav-link" [routerLink]="['/compteRendu/EQ1']" >
 <div class="widget-container" style="margin-left: 70px">
+
 	<div class="widget blue">
 		<div class="icon">
 			<i class="fa fa-regular fa-file"></i>
@@ -13,6 +14,7 @@
 		  <div class="bottom">Systèmes d'aujourd'hui</div>
 		</div>
 	  </div>
+
 	<ng-container *ngFor="let task of tasks.aggregations.unique_values.buckets">
 
 	<div class="widget" [class]="{'green':task.key==='OK','yellow':task.key==='Warning','red':task.key==='Critical','blue':task.key===''}" *ngIf="task.key==='OK'||task.key==='Warning'||task.key==='Critical'">
@@ -20,6 +22,7 @@
 		<i *ngIf="task.key==='OK'" class="fa fa-solid fa-thumbs-up"></i>
 		<i *ngIf="task.key==='Warning'" class="fa fa-warning" aria-hidden="true"></i>
 		<i *ngIf="task.key==='Critical'" class="fa fa-light fa-ban"></i>
+
 
 		<i *ngIf="task.key===''" class="fa fa-light fa-xmark"></i>
 	  </div>
@@ -34,6 +37,7 @@
 </a>
 <a class="nav-link" [routerLink]="['/backup/EB1']" >
   <div class="widget-container" style="margin-left: 70px">
+
 	<div class="widget blue">
 		<div class="icon">
 			<i class="fa fa-solid fa-database"></i>
@@ -69,6 +73,7 @@
 
 <a class="nav-link" [routerLink]="['/jobs']" >
 	<div class="widget-container" style="margin-left: 70px">
+	
 	  <div class="widget blue">
 		  <div class="icon">
 			<i class="fa fa-sharp fa-solid fa-gear"></i>
