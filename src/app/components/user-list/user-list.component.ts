@@ -4,6 +4,8 @@ import { UserService } from 'src/app/services/user.service';
 import { User } from 'src/app/models/user';
 import { interval } from 'rxjs';
 import { UrlConnectionService } from 'src/app/services/url-connection.service';
+import { TranslocoService } from '@ngneat/transloco';
+
 
 
 
@@ -21,7 +23,7 @@ export class UserListComponent implements OnInit {
   updateSubscription: any;
   role=0
 
-  constructor(private http: HttpClient, private userService:UserService, private urlConnectionervice:UrlConnectionService) {}
+  constructor(private http: HttpClient, private userService:UserService, private urlConnectionervice:UrlConnectionService, private readonly translocoService: TranslocoService) {}
   urlAdmin=this.urlConnectionervice.getAdminUrl()
 
   ngOnInit() {

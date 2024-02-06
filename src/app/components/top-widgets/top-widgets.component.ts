@@ -3,6 +3,7 @@ import { CompteRendusService } from 'src/app/services/compte-rendus.service';
 import { BackupsService } from 'src/app/services/backups.service';
 import { JobService } from 'src/app/services/job.service';
 import { interval, Subscription } from 'rxjs';
+import { TranslocoService } from '@ngneat/transloco';
 @Component({
   selector: 'app-top-widgets',
   templateUrl: './top-widgets.component.html',
@@ -28,7 +29,7 @@ export class TopWidgetsComponent implements OnInit{
     })
 
   }
-  constructor(private compteRendu:CompteRendusService, private backupService:BackupsService, private jobService:JobService){}
+  constructor(private compteRendu:CompteRendusService, private backupService:BackupsService, private jobService:JobService, private readonly translocoService: TranslocoService){}
   getEp1(){
     this.compteRendu.findDashboard()
          .subscribe(tasks => {this.resultTasks = this.tasks = tasks})

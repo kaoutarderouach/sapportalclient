@@ -1,5 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { CompteRendusService } from './services/compte-rendus.service';
+import { TranslocoService } from '@ngneat/transloco';
 
 @Component({
   selector: 'app-root',
@@ -11,13 +12,14 @@ export class AppComponent implements OnInit {
   ss:string=""
   tasks =  {} as any;
   resultTasks: any[] = [];
-  constructor(private compteRendusService:CompteRendusService){}
+  constructor(private compteRendusService:CompteRendusService, private readonly translocoService: TranslocoService){}
   getEp1(){
     this.compteRendusService.findAll()
          .subscribe(tasks => {this.resultTasks = this.tasks = tasks})
 
    }
   ngOnInit(): void {
+    //this.translocoService.translate('title');
     this.getEp1()
 
      this.ss=Array.from('some string')[0];

@@ -1,5 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
+import { TranslocoService } from '@ngneat/transloco';
 
 
 @Component({
@@ -8,7 +9,7 @@ import { MatDatepickerInputEvent } from '@angular/material/datepicker';
   styleUrls: ['./calendar.component.css']
 })
 export class CalendarComponent implements OnInit{
-  constructor(){}
+  constructor(private readonly translocoService: TranslocoService){}
   maxDate = new Date().toISOString().split('T')[0]; // set maximum date to today's date
   minDate:any
 

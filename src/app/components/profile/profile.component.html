@@ -11,8 +11,12 @@
                                                                     <img src="https://img.icons8.com/bubbles/100/000000/user.png" class="img-radius" alt="User-Profile-Image">
                                                                 </div>
                                                                 <h6 class="f-w-600" >{{user.name}}</h6>
-                                                                <span *ngIf="user.role==1">Administrateur</span>
-                                                                <span *ngIf="user.role==0">Utilisateur normal</span>
+                                                                <div  *transloco="let t">
+                                                                    <span *ngIf="user.role==1" >{{ t("profil.role_admin") }}</span>
+                                                                    <span *ngIf="user.role==0">{{ t("profil.role_user") }}</span>
+
+                                                                </div>
+
 
                                                                 <i class=" mdi mdi-square-edit-outline feather icon-edit m-t-10 f-16"></i>
                                                             </div>
@@ -28,11 +32,11 @@
 
 																	</div>
 
-                                                                
-                                                                <div class="row">
-                                                                    <button class="button-arounder btn btn-success" style="margin-left: 0px; margin-right: 0;"  data-toggle="modal" data-target="#modalEditForm" (click)="onClick()">Changer le mot de passe</button>
 
-                                                                    <div class="col-sm-12">
+                                                                <div class="row">
+                                                                    <button type="button" class="button-arounder btn btn-success" data-bs-toggle="modal" data-bs-target="#modalEditForm" style="margin-left: 0px; margin-right: 0; margin-top: 50px;" (click)="onClick()" *transloco="let t">
+                                                                        {{ t("profil.pwd") }}
+                                                                      </button>                                                                    <div class="col-sm-12">
 
 						<div class="buttons-container" >
 																		  </div>
@@ -58,7 +62,7 @@ aria-hidden="true">
 <form (ngSubmit)="onSubmit()">
 	<div class="modal-header text-center">
 
- <h4 class="modal-title w-100 font-weight-bold" style="margin-left: auto; margin-right: auto;" >Modifier le mot de passe</h4>
+ <h4 class="modal-title w-100 font-weight-bold" style="margin-left: auto; margin-right: auto;"  *transloco="let t" >{{ t("pwd_modal.msg") }}</h4>
   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 		<span aria-hidden="true">&times;</span>
 		 </button>
@@ -70,14 +74,14 @@ aria-hidden="true">
 	<i class="fa fa-solid fa-lock"></i>
 
 	<input  type="password" id="defaultForm-name-old" class="form-control validate"  [(ngModel)]="oldPassword" name="oldPassword">
-<label data-error="wrong" data-success="right"   for="defaultForm-name-old" style="margin-top: 5px;"  >Ancien mot de passe</label>
+<label data-error="wrong" data-success="right"   for="defaultForm-name-old" style="margin-top: 5px;"  *transloco="let t" >{{ t("pwd_modal.old_pwd") }}</label>
 </div>
 <div class="md-form mb-4">
 	<i class="fa fa-solid fa-lock"></i>
 	<!--<input  type="password" id="defaultForm-name-new" class="form-control validate"  [(ngModel)]="selectedUser.password" name="password">
 <label data-error="wrong" data-success="right"   for="defaultForm-name-new" style="margin-top: 5px;"  >Nouveau mot de passe</label>-->
 <input type="password" id="defaultForm-name-new" class="form-control validate" [(ngModel)]="selectedUser.password" name="password" autocomplete="new-password">
-<label data-error="wrong" data-success="right" for="defaultForm-name-new" style="margin-top: 5px;">Nouveau mot de passe</label>
+<label data-error="wrong" data-success="right" for="defaultForm-name-new" style="margin-top: 5px;" *transloco="let t" >{{ t("pwd_modal.new_pwd") }}</label>
 
 </div>
 <div class="md-form mb-4">
@@ -85,13 +89,13 @@ aria-hidden="true">
 	<input  type="password" id="defaultForm-name-confirm"  [ngClass]="{
 		'border-success':( confirmPassword===selectedUser.password && confirmPassword!==''),
 		'border-danger': (confirmPassword!==selectedUser.password && confirmPassword!=='')}" class="form-control validate" [(ngModel)]="confirmPassword"  name="confirmPassword">
-<label data-error="wrong" data-success="right"   for="defaultForm-name-confirm" style="margin-top: 5px;"  >Confirmer le mot de passe</label>
+<label data-error="wrong" data-success="right"   for="defaultForm-name-confirm" style="margin-top: 5px;"  *transloco="let t" >{{ t("pwd_modal.confirm_pwd") }}</label>
 </div>
 
 	</div>
 		<div class="modal-footer d-flex justify-content-center">
-  <button type="submit" class="btn btn-warning" style="width: 100%; margin-bottom: 5px;" >Modifier </button>
-  <button type="submit" class="btn btn-success" data-dismiss="modal"  style="width: 100%;" >Annuler</button>
+  <button type="submit" class="btn btn-warning" style="width: 100%; margin-bottom: 5px;" *transloco="let t" >{{ t("pwd_modal.edit") }} </button>
+  <button type="submit" class="btn btn-success" data-dismiss="modal"  style="width: 100%;" *transloco="let t" >{{ t("pwd_modal.cancel") }}</button>
 	</div>
 
 

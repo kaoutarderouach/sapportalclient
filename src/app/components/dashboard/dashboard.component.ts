@@ -6,6 +6,7 @@ import { CompteRendusService } from 'src/app/services/compte-rendus.service';
 import { Router } from '@angular/router';
 import { JobService } from 'src/app/services/job.service';
 import { formatDate } from '@angular/common';
+import { TranslocoService } from '@ngneat/transloco';
 
 
 @Component({
@@ -22,7 +23,7 @@ export class DashboardComponent implements OnInit {
    dataBackup: any;
    dataJob: any;
    currentMonth: string ="";
-  constructor(private backupservice:BackupsService, private jobservice: JobService, private compteRendu:CompteRendusService,private router: Router){
+  constructor(private backupservice:BackupsService, private jobservice: JobService, private compteRendu:CompteRendusService,private router: Router, private readonly translocoService: TranslocoService){
 
   }
 
@@ -35,7 +36,7 @@ export class DashboardComponent implements OnInit {
     const currentDate = new Date();
     const options = { month: 'long' } as Intl.DateTimeFormatOptions;
     this.currentMonth = new Intl.DateTimeFormat('fr-FR', options).format(currentDate);
-    
+
   }
 
   private updateSubscription!: Subscription;

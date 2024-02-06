@@ -7,6 +7,7 @@ import { EP1Service } from 'src/app/services/ep1.service';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { BackupsService } from 'src/app/services/backups.service';
 import { JobService } from 'src/app/services/job.service';
+import { TranslocoService } from '@ngneat/transloco';
 
 @Component({
   selector: 'app-navbar',
@@ -35,10 +36,12 @@ export class NavbarComponent implements OnInit{
   bol:number=1
   cc:any="test"
 
-  constructor(private compteRendu: CompteRendusService, private ep1Service: EP1Service, private backupService:BackupsService, private jobService: JobService){
+  constructor(private compteRendu: CompteRendusService, private ep1Service: EP1Service, private backupService:BackupsService, private jobService: JobService,  private readonly translocoService: TranslocoService){
 
   }
   ngOnInit(): void {
+
+    this.translocoService.translate('navbar.system');
     this.getSidNavbar();
 
     this.receiveMessage(event)

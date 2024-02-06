@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { UrlConnectionService } from 'src/app/services/url-connection.service';
+import { TranslocoService } from '@ngneat/transloco';
 
 @Component({
   selector: 'app-admin-dashboard',
@@ -14,7 +15,7 @@ export class AdminDashboardComponent {
   password: string ="";
   role=0;
 
-  constructor(private http:HttpClient, private urlConnectionervice:UrlConnectionService ){}
+  constructor(private http:HttpClient, private urlConnectionervice:UrlConnectionService, private readonly translocoService: TranslocoService){}
   urlAdmin=this.urlConnectionervice.getAdminUrl()
 
   onSubmit(){

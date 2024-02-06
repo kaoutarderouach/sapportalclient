@@ -5,6 +5,7 @@ import { EP1Service } from 'src/app/services/ep1.service';
 import { Chart, registerables } from 'chart.js';
 import { BackupsService } from 'src/app/services/backups.service';
 import { JobService } from 'src/app/services/job.service';
+import { TranslocoService } from '@ngneat/transloco';
 
 @Component({
   selector: 'app-historique',
@@ -28,7 +29,7 @@ export class HistoriqueComponent  implements OnInit{
   jobs =  {} as any;
   resultJobs: any[] = [];
 
-  constructor(private ep1Service: EP1Service,private backupservice:BackupsService,private jobservice: JobService){
+  constructor(private ep1Service: EP1Service,private backupservice:BackupsService,private jobservice: JobService, private readonly translocoService: TranslocoService){
 
   }
   ngOnInit(): void {

@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { TranslocoService } from '@ngneat/transloco';
 
 @Component({
   selector: 'app-filter-type',
@@ -6,7 +7,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
   styleUrls: ['./filter-type.component.css']
 })
 export class FilterTypeComponent implements OnInit{
-  constructor(){}
+  constructor(private readonly translocoService: TranslocoService){}
   ngOnInit(): void {
 
   }

@@ -5,6 +5,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
 import { User } from 'src/app/models/user';
 import { UrlConnectionService } from 'src/app/services/url-connection.service';
+import { TranslocoService } from '@ngneat/transloco';
 
 @Component({
   selector: 'app-login',
@@ -23,7 +24,7 @@ export class LoginComponent implements OnInit {
   logo = 'assets/images/login.png'
   userLogged:string=''
   user:User={username:"",name:"",password:""}
-  constructor(private http: HttpClient, private ep1service: EP1Service,private authService: AuthService,private router: Router, private urlConnectionervice:UrlConnectionService) { }
+  constructor(private http: HttpClient, private ep1service: EP1Service,private authService: AuthService,private router: Router, private urlConnectionervice:UrlConnectionService,private readonly translocoService: TranslocoService){ }
    urlAdmin=this.urlConnectionervice.getAdminUrl()
   ngOnInit(): void {
   //this.ep1service.login()

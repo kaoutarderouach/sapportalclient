@@ -1,0 +1,80 @@
+{
+	"title": "Hello World!",
+	"login":{
+		"pwd":"password",
+		"reset": "Forgot your password ?",
+		"cliq": "Click here",
+		"connect": "log in"
+	},
+
+	"navbar": {
+		"dashboard": "Dashboard",
+		"system": "System",
+		"logout": "Log out",
+		"history": "History",
+		"jobs": "Jobs",
+		"backup": "Backups",
+		"log": "Logs"
+	   },
+	   "dashboard": {
+		"state": "State",
+		"system": "today's system",
+		"backup": "today's backups",
+		"jobs": "today's jobs"
+	   },
+	   "chart": {
+		"titre_system": "Systems states for this month",
+		"titre_jobs": "Jobs states for this month",
+		"titre_backup": "Backups states for this month"
+	   },
+	   "profil": {
+		"pwd": "Change password",
+		"role_admin": "Administrator",
+		"role_user": "Normal user"
+	   },
+	   "historique":{
+		"type_sys":"Systems",
+		"type_backup": "Backups",
+		"type_log": "Logs",
+		"message": "Please choose a type"
+	   },
+	   "calendar":{
+		"msg": "Select start date and end date",
+		"start_date": "start date",
+		"end_date": "end date"
+	   },
+	   "admin":{
+		"add_msg":"Add a new user",
+		"table_name":"Name",
+		"table_role": "Role",
+		"table_edit": "Edit",
+		"table_delete": "Delete",
+		"table_activate": "Activate"
+
+  },
+  "add_modal":{
+	"login": "Login",
+	"username":"Username",
+	"user": "User",
+	"admin": "Administrator",
+	"role": "Assign a role",
+	"add": "Add user",
+	"cancel": "Cancel"
+  },
+  "edit_modal":{
+	"login": "Login",
+	"username":"Username",
+	"role": "Role",
+	"edit": "Edit",
+	"cancel": "Cancel",
+	"msg":"Edit a user"
+  },
+  "pwd_modal":{
+	"msg": "change the password",
+	"old_pwd": "Old Password",
+	"new_pwd": "New Password",
+	"confirm_pwd": "Confirm password",
+	"edit": "Edit",
+	"cancel": "Cancel"
+  }
+  }

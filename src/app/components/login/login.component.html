@@ -20,9 +20,13 @@
     <title>Login | Sap Portal </title>
 </head>
 <body>
+
     <div class="wrapper">
+        <app-language-selector></app-language-selector>
         <div class="container main">
+
             <div class="row">
+
                 <div class="col-md-6 side-image" style="background-image: url('{{logo}}');" >
                     <!-------Image-------->
 
@@ -32,7 +36,9 @@
                     </div>
                 </div>
                 <div class="col-md-6 right">
+
                      <div class="input-box">
+
                         <header> Sap Portal</header>
 						<form (submit)="onSubmit()">
                         <div class="input-field">
@@ -41,15 +47,16 @@
                         </div>
                         <div class="input-field">
                             <input type="password" class="input" id="password"  [(ngModel)]="password" name="password" required>
-                            <label for="password">Password</label>
+                            <label for="password" *transloco="let t">{{ t("login.pwd") }} </label>
+
                         </div>
                         <div class="input-field">
-                            <input   type="submit" class="submit" value="Se connecter" >
+                            <input   type="submit" class="submit" *transloco="let t" value= '{{ t("login.connect") }}'>
 
                         </div>
 					</form>
                         <div class="signin">
-                            <span>Mot de passe oublié ? <a href="http://35.153.10.159:3000/forgot-password">Cliquez ici</a></span>
+                            <span *transloco="let t">{{ t("login.reset") }} <a href="http://35.153.10.159:3000/forgot-password" *transloco="let t">{{ t("login.cliq") }}</a></span>
                         </div>
                      </div>
                 </div>

@@ -17,92 +17,77 @@
 
 	<div class="collapse navbar-collapse" id="navbarSupportedContent">
 	  <ul class="navbar-nav mr-auto">
+
 		<li class="nav-item ">
+
 		  <a class="nav-link" [routerLink]="['/dashboard']" routerLinkActive = "active">
 			<!--<img src="{{dash}}" alt="Icône" style="width: 24px; height: 24px; color: #ff0000;">-->
-			<i class="fa fa-dashboard" aria-hidden="true"></i>
-			Dashboard
+			<!--<i class="fa fa-dashboard" aria-hidden="true"></i>-->
+			<span *transloco="let t"> {{ t("navbar.dashboard") }} </span>
 			<span class="sr-only"></span>
 			</a>
 		</li>
 
+		<li class="nav-item dropdown">
+			<!--<i class="fa fa-book" aria-hidden="true"></i>-->
+			<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" *transloco="let t"> {{ t("navbar.system") }}</a>
 
-		<li class="nav-item dropdown" >
-		  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-			<i class="fa fa-book" aria-hidden="true"></i>
+			<div class="dropdown-menu">
+			  <a class="dropdown-item" href="#" *ngFor="let task of tasks.aggregations.unique_values.buckets" [routerLink]="['/compteRendu', task.key]" routerLinkActive = "active"> {{task.key}}</a>
+			</div>
+		  </li>
+		  <li class="nav-item dropdown">
+			<!--<i class="fa fa-book" aria-hidden="true"></i>-->
+			<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" *transloco="let t"> {{ t("navbar.jobs") }}</a>
 
+			<div class="dropdown-menu">
+			  <a class="dropdown-item" href="#" *ngFor="let job of jobs.aggregations.unique_values.buckets" [routerLink]="['/job', job.key]" routerLinkActive = "active"> {{job.key}}</a>
+			</div>
+		  </li>
+		  <li class="nav-item dropdown">
+			<!--<i class="fa fa-book" aria-hidden="true"></i>-->
+			<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" *transloco="let t"> {{ t("navbar.backup") }}</a>
 
-		   Les comptes rendus
-		  </a>
-		  <div class="dropdown-menu" aria-labelledby="navbarDropdown" routerLinkActive = "active" style="background-color: black;">
-			<a class="dropdown-item" href="#" *ngFor="let task of tasks.aggregations.unique_values.buckets" [routerLink]="['/compteRendu', task.key]" routerLinkActive = "active"> {{task.key}}</a>
-
-
-		  </div>
-		</li>
-		<li class="nav-item dropdown" style="margin-left: auto;">
-		  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-			<i class="fa fa-solid fa-gears"></i>
-
-			Les jobs
-		  </a>
-		  <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="margin-left: 50px; background-color: black;">
-			<a class="dropdown-item" href="#" *ngFor="let job of jobs.aggregations.unique_values.buckets" [routerLink]="['/job', job.key]" routerLinkActive = "active"> {{job.key}}</a>
-
-
-		  </div>
-		</li>
-		<li class="nav-item dropdown" style="margin-left: auto;">
-		  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-			<i class="fa fa-solid fa-database"></i>
-		   Les sauvegardes
-		  </a>
-		  <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="margin-left: 50px; background-color: black;">
-
-			<a class="dropdown-item" href="#" routerLink="/backup" >Sauvegardes</a>
+			<div class="dropdown-menu">
+				<a class="dropdown-item" href="#" routerLink="/backup" *transloco="let t"> {{ t("navbar.backup") }}</a>
 			<a class="dropdown-item" href="#" *ngFor="let backup of backups.aggregations.unique_values.buckets" [routerLink]="['backup/', backup.key]" routerLinkActive = "active"> {{backup.key}}</a>
+			  <div class="dropdown-divider"></div>
+			  <a class="dropdown-item" href="#"*transloco="let t"> {{ t("navbar.log") }} </a>
+			  <a class="dropdown-item" href="#" *ngFor="let log of backups.aggregations.unique_values.buckets" [routerLink]="['log/', log.key]" routerLinkActive = "active"> {{log.key}}</a>
 
-
-			<div class="dropdown-divider"></div>
-			<a class="dropdown-item" href="#" routerLink="/log">Archivage</a>
-			<a class="dropdown-item" href="#" *ngFor="let log of backups.aggregations.unique_values.buckets" [routerLink]="['log/', log.key]" routerLinkActive = "active"> {{log.key}}</a>
-
-
-
-		  </div>
-		</li>
+			</div>
+		  </li>
 		<li>
 
 		<li class="nav-item" style="margin-left: auto;">
 		  <a class="nav-link" href="#" routerLink="/historique" routerLinkActive = "active">
-			<i class="fa fa-history" aria-hidden="true"></i>
-			Historique
+			<!--<i class="fa fa-history" aria-hidden="true"></i>-->
+			<span *transloco="let t"> {{ t("navbar.history") }} </span>
 		  </a>
 		</li>
 		<li *ngIf="admin==1"  class="nav-item" style="margin-left: auto;">
 		  <a class="nav-link" href="#" routerLink="/users" routerLinkActive = "active">
-			<i class="fa fa-thin fa-users">
-
-			</i>
+			<!-- <i class="fa fa-thin fa-users"> </i>-->
 		   Admin
 		  </a>
 		</li>
 		<li class="nav-item" style="margin-left: auto;">
 		  <a class="nav-link" href="#"  [routerLink]="['profile/', idUser]"  routerLinkActive = "active">
-			<i class="fa fa-thin fa-user">
+			<!--<i class="fa fa-thin fa-user"></i>-->
 
-			</i>
+
 		 {{user}}
 		  </a>
 		</li>
 		  <li class="nav-item" style="margin-left: auto;">
 		  <a class="nav-link" href="#" >
-			<i class="fa fa-thin fa-sign-out" >
-
-			</i>
-			Se déconnecter
+			<!--<i class="fa fa-thin fa-sign-out" ></i>-->
+			<span *transloco="let t"> {{ t("navbar.logout") }} </span>
 		  </a>
 		</li>
+		<li class="nav-item app-language-selector">
+			<app-language-selector></app-language-selector>
+		  </li>
 
 
 	  </ul>
@@ -113,7 +98,16 @@
   </nav>
 
 
-  <style>
+
+ <!-- <style>
+	/* ... Vos styles existants ... */
+
+.app-language-selector {
+  margin-left: 10px; /* Ajustez la marge selon vos besoins */
+}
+
+/* ... Autres styles ... */
+
 	i{
 	  color:  rgba(255, 255, 255, 0.829);
 	}
@@ -138,4 +132,6 @@
 	color:  rgba(255, 111, 0, 0.829);
   }
 
+
   </style>
+-->

@@ -13,6 +13,7 @@ import { FilterPipe } from './pipes/filter.pipe';
 import { SortPipe } from './pipes/sort.pipe';
 import { CompteRendusComponent } from './components/compte-rendus/compte-rendus.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { LanguageSelectorComponent } from './components/app-language-selector/app-language-selector.component';
 
 import { FooterComponent } from './components/footer/footer.component';
 import { SearchComponent } from './components/search/search.component';
@@ -40,6 +41,7 @@ import { FilterTypeComponent } from './components/filter-type/filter-type.compon
 import { ProfileComponent } from './components/profile/profile.component';
 import { TopWidgetsComponent } from './components/top-widgets/top-widgets.component';
 import { SysByMonthComponent } from './components/sys-by-month/sys-by-month.component';
+import { TranslocoRootModule } from './transloco-root.module';
 
 
 
@@ -47,6 +49,7 @@ import { SysByMonthComponent } from './components/sys-by-month/sys-by-month.comp
   declarations: [
     AppComponent,
     EP1Component,
+    LanguageSelectorComponent,
     NavbarComponent,
     JobsComponent,
     BackupsComponent,
@@ -97,7 +100,8 @@ import { SysByMonthComponent } from './components/sys-by-month/sys-by-month.comp
     FontAwesomeModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatInputModule
+    MatInputModule,
+    TranslocoRootModule
 
   ],
   providers: [    { provide: HTTP_INTERCEPTORS, useClass: ContentTypeInterceptor, multi: true }  ],

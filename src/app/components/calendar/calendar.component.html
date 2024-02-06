@@ -8,14 +8,14 @@
 
 
 <div class="container">
-	<h6>Séléctionnez la date de début et la date de fin</h6>
+	<h6 *transloco="let t"> {{ t("calendar.msg") }}</h6>
 	<div class="row">
 	  <div class="col-md-6">
-		<label>Date: </label>
+		<label *transloco="let t"> {{ t("calendar.start_date") }} </label>
 		<input max="{{ maxDate }}" type="date" class="form-control" [(ngModel)]="enteredDateValue"  (input)="onSearchDateChanged()"   name="startDate">
 	  </div>
 	  <div class="col-md-6">
-		<label>Date de fin:</label>
+		<label *transloco="let t"> {{ t("calendar.end_date") }}</label>
 		<input max="{{ maxDate}}" [min]="getMinEndDate()" type="date" class="form-control" [(ngModel)]="enteredEndDateValue"  (input)="onSearchEndDateChanged()"   name="endDate">
 	  </div>
 	</div>

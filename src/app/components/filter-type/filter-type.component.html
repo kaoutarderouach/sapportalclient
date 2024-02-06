@@ -3,7 +3,11 @@
 	  <label><strong>Type:</strong></label>
 	  <div class="fieldgroup">
 		<input type="radio" name="type" value="sys" [(ngModel)]="selectedTypeButtonValue" (change)="onTypeButtonSelectedChanged()" id="radio-sys" />
-		<label for="radio-sys">Comptes rendus</label>
+		<!--"historique":{
+		"type_sys":"Systems",
+		"type_backup": "Backups",
+		"type_log": "Logs"-->
+		<label for="radio-sys" *transloco="let t"> {{ t("historique.type_sys") }}</label>
 	  </div>
 	  <div class="fieldgroup">
 		<input type="radio" name="type" value="jobs" [(ngModel)]="selectedTypeButtonValue" (change)="onTypeButtonSelectedChanged()" id="radio-jobs" />
@@ -11,11 +15,11 @@
 	  </div>
 	  <div class="fieldgroup">
 		<input type="radio" name="type" value="backup" [(ngModel)]="selectedTypeButtonValue" (change)="onTypeButtonSelectedChanged()" id="radio-backup" />
-		<label for="radio-backup">Sauvegardes</label>
+		<label for="radio-backup" *transloco="let t"> {{ t("historique.type_backup") }}</label>
 	  </div>
 	  <div class="fieldgroup">
 		<input type="radio" name="type" value="log" [(ngModel)]="selectedTypeButtonValue" (change)="onTypeButtonSelectedChanged()" id="radio-log" />
-		<label for="radio-log">Archivages</label>
+		<label for="radio-log" *transloco="let t"> {{ t("historique.type_log") }}</label>
 	  </div>
 	</fieldset>
   </div>

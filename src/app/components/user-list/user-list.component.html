@@ -1,29 +1,34 @@
 <app-admin-dashboard></app-admin-dashboard>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <div class="text-center">
-    <button style="width: 50%; margin-top: 50px;" type="button" data-toggle="modal" data-target="#modalLoginForm" class="btn btn-dark">
-        ajouter un nouveau utilisateur <i class="fa fa-solid fa-user-plus" style="color: rgba(255, 111, 0, 0.829); width: 50px;"></i>
-    </button>
+    <!--<button style="width: 50%; margin-top: 50px;" type="button" data-toggle="modal" data-target="#modalLoginForm" class="btn btn-dark" *transloco="let t"> {{ t("admin.add_msg") }}<i class="fa fa-solid fa-user-plus" style="color: rgba(255, 111, 0, 0.829); width: 50px;"></i>
+    </button>-->
+    <button type="button" style="width: 50%; margin-top: 50px;" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#modalLoginForm" style="margin-left: 0px; margin-right: 0; margin-top: 50px;"  *transloco="let t">
+        {{ t("admin.add_msg") }}<i class="fa fa-solid fa-user-plus" style="color: rgba(255, 111, 0, 0.829); width: 50px;"></i>
+      </button>
 </div>
 <table class="styled-table" style="width: 80%; margin-right: 200px;">
     <thead>
         <tr>
-            <th>Name</th>
+            <th *transloco="let t"> {{ t("admin.table_name") }}</th>
             <th>Email</th>
-            <th>Role</th>
-            <th>modifier</th>
-            <th>Supprimer</th>
+            <th *transloco="let t"> {{ t("admin.table_role") }}</th>
+            <th *transloco="let t"> {{ t("admin.table_edit") }}</th>
+            <th *transloco="let t"> {{ t("admin.table_delete") }}</th>
         </tr>
     </thead>
-    <tbody>
+    <tbody *transloco="let t">
+
         <tr *ngFor="let user of users">
             <td>{{user.name}}</td>
             <td>{{user.username}}</td>
-            <td *ngIf="user.role==0">Utilisateur</td>
-            <td *ngIf="user.role==1">Administrateur</td>
-            <td><button class="btn btn-primary" data-toggle="modal" data-target="#modalEditForm" (click)="editUser(user)">Modifier</button></td>
-            <td *ngIf="user.active==0"><button class="btn btn-danger" (click)="deleteUser(user.id)">Supprimer</button></td>
-            <td *ngIf="user.active==1"><button class="btn btn-secondary" (click)="activeUser(user.id)">Activer</button></td>
+            <td *ngIf="user.role==0">{{ t("profil.role_user") }}</td>
+            <td *ngIf="user.role==1">{{ t("profil.role_admin") }}</td>
+            <!--<td><button class="btn btn-primary" data-toggle="modal" data-target="#modalEditForm" (click)="editUser(user)">{{ t("admin.table_edit") }}</button></td>-->
+            <td> <button type="button"  class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalEditForm" (click)="editUser(user)"  *transloco="let t">
+                {{ t("admin.table_edit") }}</button></td>
+            <td *ngIf="user.active==0"><button class="btn btn-danger" (click)="deleteUser(user.id)">{{ t("admin.table_delete") }}</button></td>
+            <td *ngIf="user.active==1"><button class="btn btn-secondary" (click)="activeUser(user.id)">{{ t("admin.table_activate") }}</button></td>
         </tr>
     </tbody>
 </table>
@@ -34,31 +39,31 @@
             <div class="modal-content">
                 <form (ngSubmit)="onSubmit()">
                     <div class="modal-header text-center">
-                        <h4 class="modal-title w-100 font-weight-bold">Modifier un utilisateur</h4>
+                        <h4 class="modal-title w-100 font-weight-bold" *transloco="let t"> {{ t("edit_modal.msg") }}</h4>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body mx-3">
                         <div class="form-group">
-                            <label for="username">Identifiant</label>
+                            <label for="username" *transloco="let t"> {{ t("edit_modal.login") }}</label>
                             <input type="email" id="username" class="form-control" [(ngModel)]="selectedUser.username" name="username">
                         </div>
                         <div class="form-group">
-                            <label for="name">Nom d'utilisateur</label>
+                            <label for="name" *transloco="let t"> {{ t("edit_modal.username") }}</label>
                             <input type="text" id="name" class="form-control" [(ngModel)]="selectedUser.name" name="name">
                         </div>
                         <div class="form-group">
-                            <label for="role">Rôle</label>
+                            <label for="role" *transloco="let t"> {{ t("edit_modal.role") }}</label>
                             <select class="form-control" id="role" [(ngModel)]="selectedUser.role" name="role">
-                                <option value="0">Utilisateur</option>
-                                <option value="1">Administrateur</option>
+                                <option value="0" *transloco="let t"> {{ t("add_moda.user") }}</option>
+                                <option value="1" *transloco="let t"> {{ t("add_moda.admin") }}</option>
                             </select>
                         </div>
                     </div>
                     <div class="modal-footer d-flex justify-content-center">
-                        <button type="submit" class="btn btn-warning">Modifier</button>
-                        <button type="button" class="btn btn-success" data-dismiss="modal">Annuler</button>
+                        <button type="submit" class="btn btn-warning close " *transloco="let t"> {{ t("edit_modal.edit") }}</button>
+                        <button  class="btn btn-success" data-dismiss="modal" *transloco="let t"> {{ t("edit_modal.cancel") }}</button>
                     </div>
                 </form>
             </div>

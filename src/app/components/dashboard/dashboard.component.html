@@ -10,7 +10,7 @@
 <div class="chart-container">
     <canvas  id="MyChart" >{{ chart }}</canvas>
 </div>
-<p>Etats des systèmes pour le mois <span>{{currentMonth}} </span> </p>
+<p  *transloco="let t">{{ t("chart.titre_system") }}</p>
 </div>
 
 </div>
@@ -19,7 +19,13 @@
 <div class="chart-container">
     <canvas  id="MyChartBackup" >{{ chartBackup }}</canvas>
 </div>
-<p>Etats des Sauvegardes pour le mois <span>{{currentMonth}} </span> </p>
+<!--
+     "chart": {
+		"titre_system": "Etats des systèmes pour ce mois",
+		"titre_jobs": "Etats des jobs pour ce mois",
+		"titre_backup": "Etats des sauvegardes pour ce mois"
+-->
+<p  *transloco="let t">{{ t("chart.titre_backup") }}</p>
 </div>
 </div>
 <div class="row">
@@ -27,7 +33,7 @@
 <div class="chart-container">
     <canvas  id="MyChartJob" >{{ chartJob }}</canvas>
 </div>
-<p>Etats des jobs pour le mois:  <span>{{currentMonth}} </span> </p>
+<p  *transloco="let t">{{ t("chart.titre_jobs") }}</p>
 </div>
 </div>
 </div>

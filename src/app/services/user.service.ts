@@ -8,10 +8,10 @@ import { UrlConnectionService } from './url-connection.service';
   providedIn: 'root'
 })
 export class UserService {
- apiUrl="http://44.212.26.57:3000/users"
-  apiUserUrl="http://44.212.26.57:3000/user"
-  apiUrlArchive="http://44.212.26.57:3000/user/archive/"
-  apiUrlActive="http://44.212.26.57:3000/user/active/"
+ apiUrl="http://35.153.10.159:3000/api/users"
+  apiUserUrl="http://35.153.10.159:3000/user"
+  apiUrlArchive="http://35.153.10.159:3000/user/archive/"
+  apiUrlActive="http://35.153.10.159:3000/user/active/"
   constructor(private http: HttpClient, private urlConnectionService: UrlConnectionService) {}
   //apiUrl = this.urlConnectionService.getAdminUrl()+'/users'
   getUsers(): Observable<any> {

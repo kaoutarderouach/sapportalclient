@@ -1,0 +1,34 @@
+<div>
+	<button
+	  *ngFor="let language of languagesList; index as i"
+	  (click)="changeLanguage(language.code)"
+	  [class.selected]="language.code === selectedLanguageCode"
+	>
+	  <img [src]="language.imgUrl" [alt]="language.name" style="width: 20px ; margin-right:5px" />
+	  <span>{{ language.shorthand }}</span>
+	</button>
+  </div>
+
+
+<style>
+	/* app-language-selector.component.css */
+
+button {
+  background-color: transparent;
+  color: rgba(0, 0, 0, 0.829);/* Couleur de fond par défaut */
+}
+button {
+  background-color: black; /* Green */
+  border: none;
+  color: white;
+  padding: 10px 15px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 11px;
+}
+button.selected {
+  background-color: rgba(255, 111, 0, 0.829); /* Couleur de fond pour la langue sélectionnée */
+}
+
+</style>

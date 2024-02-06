@@ -11,8 +11,8 @@
 			<i class="fa fa-regular fa-file"></i>
 		</div>
 		<div class="value">
-		  <div class="top">Etat </div>
-		  <div class="bottom">Systèmes d'aujourd'hui</div>
+		  <div class="top"  *transloco="let t">{{ t("dashboard.state") }}</div>
+		  <div class="bottom" *transloco="let t">{{ t("dashboard.system") }}</div>
 		</div>
 	  </div>
 
@@ -44,8 +44,8 @@
 			<i class="fa fa-solid fa-database"></i>
 		</div>
 		<div class="value">
-		  <div class="top">Etat</div>
-		  <div class="bottom">Sauvegardes d'aujourd'hui</div>
+		  <div class="top" *transloco="let t">{{ t("dashboard.state") }}</div>
+		  <div class="bottom" *transloco="let t">{{ t("dashboard.backup") }}</div>
 		</div>
 	  </div>
 
@@ -80,8 +80,8 @@
 			<i class="fa fa-sharp fa-solid fa-gear"></i>
 		  </div>
 		  <div class="value">
-			<div class="top">Etat</div>
-			<div class="bottom">Jobs d'aujourd'hui</div>
+			<div class="top"  *transloco="let t">{{ t("dashboard.state") }}</div>
+			<div class="bottom" *transloco="let t">{{ t("dashboard.jobs") }}</div>
 		  </div>
 		</div>
   <ng-container *ngFor="let job of jobs.aggregations.unique_values.buckets">

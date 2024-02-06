@@ -6,6 +6,7 @@ import { User } from 'src/app/models/user';
 import { UserService } from 'src/app/services/user.service';
 import { ChangeDetectorRef } from '@angular/core';
 import { UrlConnectionService } from 'src/app/services/url-connection.service';
+import { TranslocoService } from '@ngneat/transloco';
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -37,7 +38,7 @@ export class ProfileComponent implements OnInit {
 
 
   }
-  constructor(private userService:UserService, private route:ActivatedRoute,private http: HttpClient,private cdr: ChangeDetectorRef, private urlConnectionService: UrlConnectionService){}
+  constructor(private userService:UserService, private route:ActivatedRoute,private http: HttpClient,private cdr: ChangeDetectorRef, private urlConnectionService: UrlConnectionService, private readonly translocoService: TranslocoService){}
 urlAdmin= this.urlConnectionService.getAdminUrl()
   onClick(){
   this.selectedUser=this.users[0]

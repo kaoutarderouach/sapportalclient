@@ -1,0 +1,80 @@
+{
+	"title": "Bonjour le monde !",
+	"login":{
+		"pwd":"mot de passe",
+		"reset": "Mot de passe oublié ?",
+		"cliq": "Cliquez ici",
+		"connect": "Se connecter"
+
+	},
+	"navbar": {
+		"dashboard": "Dashboard",
+		"system": "Systèmes",
+		"logout": "déconnecter",
+		"history": "Historique",
+		"jobs": "Jobs",
+		"backup": "Sauvegardes",
+		"log": "Archivages"
+	   },
+	   "dashboard": {
+		"state": "Etat",
+		"system": "Système d'aujourd'hui",
+		"backup": "Sauvegardes d'aujourd'hui",
+		"jobs": "Jobs d'aujourd'hui"
+	   },
+	   "chart": {
+		"titre_system": "Etats des systèmes pour ce mois",
+		"titre_jobs": "Etats des jobs pour ce mois",
+		"titre_backup": "Etats des sauvegardes pour ce mois"
+	   },
+	   "profil": {
+		"pwd": "Changer le mot de passe",
+		"role_admin": "Administrateur",
+		"role_user": "Utilsateur normal"
+	   },
+	   "historique":{
+		"type_sys":"Systèmes",
+		"type_backup": "Sauvegardes",
+		"type_log": "Archivages",
+		"message": "Veuillez choisir un type"
+	   },
+	   "calendar":{
+		"msg": "Séléctionnez la date de début et la date de fin",
+		"start_date": "Date de début",
+		"end_date": "Date de fin"
+	   },
+
+	   "admin":{
+		"add_msg":"Ajouter un nouvel utilisateur ",
+		"table_name":"Nom et prénom",
+		"table_role": "Rôle",
+		"table_edit": "Modifier",
+		"table_delete": "Supprimer",
+		"table_activate": "Activer"
+  },
+  "add_modal":{
+	"login": "Identifiant",
+	"username":"Nom d'utilisateur",
+	"user": "Utilsateur",
+	"admin": "Administrateur",
+	"role": "Attribuer un rôle",
+	"add": "Ajouter un utilisateur",
+	"cancel": "Annuler"
+  },
+  "edit_modal":{
+	"login": "Identifiant",
+	"username":"Nom d'utilisateur",
+	"role": "Rôle",
+	"edit": "Modifier",
+	"cancel": "Annuler",
+	"msg":"Modifier un utilisateur"
+  },
+  "pwd_modal":{
+	"msg": "Modifier le mot de passe",
+	"old_pwd": "Ancien mot de passe",
+	"new_pwd": "Nouveau mot de passe",
+	"confirm_pwd": "Confirmer le mot de passe",
+	"edit": "Modifier",
+	"cancel": "Annuler"
+  }
+}
