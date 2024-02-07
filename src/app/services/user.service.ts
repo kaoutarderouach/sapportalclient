@@ -9,6 +9,7 @@ import { UrlConnectionService } from './url-connection.service';
 })
 export class UserService {
  apiUrl="http://35.153.10.159:3000/api/users"
+  apiUrlUpdate="http://35.153.10.159:3000/users"
   apiUserUrl="http://35.153.10.159:3000/user"
   apiUrlArchive="http://35.153.10.159:3000/user/archive/"
   apiUrlActive="http://35.153.10.159:3000/user/active/"
@@ -25,7 +26,7 @@ export class UserService {
 
 
   updateUser(user:User) {
-    const url = `${this.apiUrl}/${user.id}`;
+    const url = `${this.apiUrlUpdate}/${user.id}`;
     const body = {password:user.password,username:user.username,name:user.name,role:user.role};
     return this.http.put(url, body);
   }
