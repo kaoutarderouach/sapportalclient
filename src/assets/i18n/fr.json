@@ -55,7 +55,7 @@
   "add_modal":{
 	"login": "Identifiant",
 	"username":"Nom d'utilisateur",
-	"user": "Utilsateur",
+	"user": "Utilisateur",
 	"admin": "Administrateur",
 	"role": "Attribuer un rôle",
 	"add": "Ajouter un utilisateur",
@@ -76,5 +76,11 @@
 	"confirm_pwd": "Confirmer le mot de passe",
 	"edit": "Modifier",
 	"cancel": "Annuler"
+  },
+  "details":{
+	"title":"COMPTE RENDU EXPLOITATION",
+	"niveau": "Choisir un niveau",
+	"modal_details":"Les détails de la transaction",
+	"modal_button": "Fermer"
   }
 }

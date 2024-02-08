@@ -76,5 +76,11 @@
 	"confirm_pwd": "Confirm password",
 	"edit": "Edit",
 	"cancel": "Cancel"
+  },
+  "details":{
+	"title":"OPERATING REPORT",
+	"niveau": "Choose a level",
+	"modal_details":"Transaction details",
+	"modal_button": "Close"
   }
   }

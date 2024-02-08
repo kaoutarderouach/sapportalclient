@@ -6,7 +6,7 @@
   </head>
 
  <div class="six" >
-	<h1>Compte  Rendu exploitation <br/> {{tasks.hits.hits[0]._source.timestamp | date :'dd/MM/yyyy'}}
+	<h1 *transloco="let t"> {{ t("details.title") }} <br/> {{tasks.hits.hits[0]._source.timestamp | date :'dd/MM/yyyy'}}
 	  <span>{{id}}</span>
 	</h1>
   </div>
@@ -45,36 +45,43 @@
 			<td >{{task._source.desc}}</td>
 			<td>{{task._source.value}}</td>
 			<td>{{task._source.threshold}}</td>
-			<td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">
+			<td>
+			  <button type="button"  class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalEditForm" (click)="showDetails(task)">
 				details {{task._source.tcode}}
 			  </button>
-
-
-			  <!-- Modal -->
 		</td>
-
 		  </tr>
-
 		</ng-container>
 	</tbody>
   </table>
-	  <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-				<div class="modal-dialog" role="document">
-				  <div class="modal-content">
-					<div class="modal-header">
-					  <h5 class="modal-title" id="exampleModalLongTitle">Détails </h5>
-					  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					  </button>
-					</div>
-					<div class="modal-body">
-					  2023-05-07  22:07 - ESH100IX_EP1100_B0B091876BD5FA60 - SAPSYS      <br>2023-05-07  22:06 - ESH100IX_EP1100_BACEEA74A9B221F8 - SAPSYS      <br>2023-05-07  09:41 - ZSAP_WORKFLOW_RULE               - SAPSYS      <br>2023-05-08  01:10 - ZSAP_WORKFLOW_RULE               - SAPSYS      <br>2023-05-07  22:04 - ZSAP_WORKFLOW_RULE               - SAPSYS      <br>2023-05-07  15:53 - ZSAP_WORKFLOW_RULE               - SAPSYS      <br>2023-05-07  12:47 - ZSAP_WORKFLOW_RULE               - SAPSYS      <br>2023-05-08  07:22 - ZSAP_WORKFLOW_RULE               - SAPSYS      <br>2023-05-07  18:59 - ZSAP_WORKFLOW_RULE               - SAPSYS      <br>2023-05-08  04:16 - ZSAP_WORKFLOW_RULE               - SAPSYS
 
-					</div>
-					<div class="modal-footer">
-					  <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
-
-					</div>
+  <div class="container">
+    <div class="modal fade" id="modalEditForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" style="color: #33bc41;" *transloco="let t"> {{ t("details.modal_details") }} {{selectedTask?._source.tcode}}</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+					  <span aria-hidden="true"></span>
+					</button>
 				  </div>
-				</div>
-			  </div>
+				  <div class="modal-body">
+					<p> {{selectedTask?._source.DETAILS}}</p>
+
+				  </div>
+				  <div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal" *transloco="let t"> {{ t("details.modal_button") }}</button>
+				  </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--
+"details":{
+	"title":"OPERATING REPORT",
+	"niveau": "Choose a level",
+	"modal_details":"Transaction details",
+	"modal_button": "Close"
+  }-->

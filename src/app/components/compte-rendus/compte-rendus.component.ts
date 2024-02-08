@@ -17,6 +17,9 @@ export class CompteRendusComponent implements OnInit{
   tasks =  {} as any;
   resultTasks: any[] = [];
   gh!: string;
+  selectedTask: any;
+
+
 
   constructor(private ep1Service: EP1Service, private route: ActivatedRoute){
 
@@ -53,6 +56,12 @@ export class CompteRendusComponent implements OnInit{
 
 
    }
+   showDetails(task: any) {
+    this.selectedTask = task;
+  }
 
+  resetDetails() {
+    this.selectedTask = null;
+  }
 
 }

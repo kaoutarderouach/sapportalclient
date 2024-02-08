@@ -1,7 +1,7 @@
 <div class="container-fluid" style="margin-right: 10px; margin-left: 100px;">
 	<fieldset id="niveau">
 	  <div class="d-flex align-items-center">
-		<span ><strong>Choisir un niveau:</strong> </span>
+		<span ><strong *transloco="let t"> {{ t("details.niveau") }}</strong> </span>
 		<div class="fieldgroup">
 		  <input type="radio" name="niveau" value="All" [(ngModel)]="selectedRadioButtonValue" (change)="onRadioButtonSelectedChanged()" id="radio-all" />
 		  <label for="radio-all">Tous</label>
