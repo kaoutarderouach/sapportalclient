@@ -94,7 +94,9 @@ export class BackupsService {
             {
               "range": {
                 "timestamp": {
-                  "lt": "now"
+                  "gte": "now/d",
+                  "lt": "now+1d/d"// if you have an end date (exclusive)
+
                 }
               }
             }
@@ -125,7 +127,8 @@ export class BackupsService {
             {
               "range": {
                 "timestamp": {
-                  "lt": "now"
+                  "gte": "now/d",
+                  "lt": "now+1d/d"// if you have an end date (exclusive)
                 }
               }
             }

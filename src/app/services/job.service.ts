@@ -88,7 +88,7 @@ export class JobService {
               {
                 "range": {
                   "timestamp": {
-                    // "gte": "now/d",
+                    "gte": "now/d",
                     "lt": "now+1d/d"
                   }
                 }
