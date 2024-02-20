@@ -35,7 +35,7 @@ export class CompteRendusComponent implements OnInit{
   getEp1(type:any){
     this.ep1Service.findAll(type)
          .subscribe(tasks => {this.resultTasks = this.tasks = tasks})
-         console.log(this.tasks)
+         
 
 
 
@@ -52,7 +52,7 @@ export class CompteRendusComponent implements OnInit{
 
    onfilterRadioChanged(data: string){
     this.compteRenduRadioButton = data;
-    console.log(this.compteRenduRadioButton);
+
 
 
    }

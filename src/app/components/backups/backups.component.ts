@@ -33,7 +33,7 @@ export class BackupsComponent implements OnInit{
    getBackup(type:any){
     this.backupservice.find(type)
          .subscribe(backups => {this.resultbackups = this.backups = backups})
-         console.log("------------------backups------------",this.resultbackups);
+       
 
 
 
@@ -45,7 +45,7 @@ export class BackupsComponent implements OnInit{
    searchText: string='';
    onSearchTextEntered(searchValue: string){
     this.searchText = searchValue;
-    console.log(this.searchText);
+
 
    }
 
